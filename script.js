@@ -78,6 +78,93 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   skills.forEach(s => observer.observe(s));
+
+  // === MOBILE NAVIGATION TOGGLE (ADDED) ===
+  const nav = document.querySelector('nav');
+  const navLinks = document.querySelector('.navlinks');
+  
+  // Create toggle button HTML
+  const toggleBtn = document.createElement('div');
+  toggleBtn.className = 'menu-toggle';
+  toggleBtn.innerHTML = `
+      <span></span>
+      <span></span>
+      <span></span>
+  `;
+  
+  // Insert toggle button before nav
+  nav.insertBefore(toggleBtn, nav.firstChild);
+  
+  // Create overlay element
+  const overlay = document.createElement('div');
+  overlay.className = 'nav-overlay';
+  document.body.appendChild(overlay);
+  
+  // Toggle navigation
+  toggleBtn.addEventListener('click', function() {
+      toggleBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      overlay.classList.toggle('active');
+      
+      // Prevent body scroll when menu is open
+      if (navLinks.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+      } else {
+          document.body.style.overflow = '';
+      }
+  });
+  
+  // Close menu when overlay is clicked
+  overlay.addEventListener('click', function() {
+      toggleBtn.classList.remove('active');
+      navLinks.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+  });
+  
+  // Close menu when a nav link is clicked
+  const navItems = document.querySelectorAll('.navlinks li a');
+  navItems.forEach(item => {
+      item.addEventListener('click', function() {
+          toggleBtn.classList.remove('active');
+          navLinks.classList.remove('active');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+      });
+  });
+  
+  // Close menu on window resize if screen becomes larger
+  window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+          toggleBtn.classList.remove('active');
+          navLinks.classList.remove('active');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+      }
+  });
+  
+  // Handle orientation change
+  window.addEventListener('orientationchange', function() {
+      setTimeout(function() {
+          if (window.innerWidth > 768) {
+              toggleBtn.classList.remove('active');
+              navLinks.classList.remove('active');
+              overlay.classList.remove('active');
+              document.body.style.overflow = '';
+          }
+      }, 200);
+  });
+  // === END MOBILE NAVIGATION TOGGLE ===
+
+  // Typed.js intro animation
+  if (window.Typed) {
+    new Typed('.input', {
+      strings: ['Frontend Developer', 'UI/UX Designer', 'Web Developer', 'App Developer'],
+      typeSpeed: 50,
+      backSpeed: 80,
+      loop: true
+    });
+  }
 });
 
 
@@ -190,31 +277,6 @@ filterButtons.forEach(btn => {
     });
 });
 
-
-// Menu toggle & Typed intro & Canvas particle animation
-document.addEventListener('DOMContentLoaded', () => {
-  // Mobile menu toggle
-  const togglebtn = document.querySelector('.togglebtn');
-  const nav = document.querySelector('.navlinks');
-  if (togglebtn && nav) {
-    togglebtn.addEventListener('click', function () {
-      this.classList.toggle('click');
-      nav.classList.toggle('open');
-    });
-  }
-
-  // Typed.js intro animation
-  if (window.Typed) {
-    new Typed('.input', {
-      strings: ['Frontend Developer', 'UI/UX Designer', 'Web Developer', 'App Developer'],
-      typeSpeed: 50,
-      backSpeed: 80,
-      loop: true
-    });
-  }
-
-
-});
 
 // --- BACKGROUND PARTICLE ANIMATION ---
 const canvas = document.getElementById('bg-canvas');
