@@ -983,6 +983,11 @@ body::before{
         height: 400px;
     }
 
+    .hero-pic img {
+        width: 85%;
+        height: 100%;
+    }
+
     /* Typography scaling */
     .hero-text h1 {
         font-size: 55px;
@@ -1330,6 +1335,11 @@ body::before{
         height: 350px;
     }
 
+    .hero-pic img {
+        width: 85%;
+        height: 100%;
+    }
+
     .hero-text h1 {
         font-size: 32px;
     }
@@ -1456,6 +1466,11 @@ body::before{
     .container .hero-bg {
         width: 400px;
         height: 400px;
+    }
+
+    .hero-pic img {
+        width: 85%;
+        height: 100%;
     }
 
     .hero-text h1 {
