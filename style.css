@@ -1110,7 +1110,8 @@ body::before{
     }
 
     .hero-pic img {
-        width: 100%;
+        width: 85%;
+        height: 100%;
     }
 
     /* Hero Text */
