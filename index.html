@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Supethum Pathirana</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        
+        <canvas id="bg-canvas"></canvas>
+        
+        <div class="progress-bar-container">
+            <div id="progressBar"></div>
+        </div>
+
+        <div class="hero-header">
+        <div class="wrapper">
+            <header>
+                    <div class="logo-text"><b>SP</b></div>
+                <nav>
+                    <div class="togglebtn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul class="navlinks">
+                        <li><a href="#Home">Home</a></li>
+                        <li><a href="#About me">About me</a></li>
+                        <li><a href="#Skills">Skills</a></li>
+                        <li><a href="#Projects">Projects</a></li>
+                        <li><a href="#Contact me">Contact me</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <section id="Home">
+                <div class="container">
+                    <div class="hero-bg">
+                        <div class="hero-pic">
+                            <img src="/resources/profile.png" alt="profile pic">
+                        </div>
+                    </div>
+                    <div class="hero-text">
+                        <div class="Texts">
+                            <h3>Hi I am </h3>
+                            <h1>Supethum Pathirana</h1>
+                            <h2><span class="input">Fullstack Developer</span></h2>
+                        </div>
+
+                        <div class="social">
+                            <a href="https://www.linkedin.com/in/supethum-pathirana-0b6b77333/"><i class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://github.com/supethum?tab=projects"><i class="fa-brands fa-github"></i></a>
+                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
+
+                        <div class="btn-group">
+                            <a href="#Contact me" class="btn2">Contact me</a>
+                            <button class="btn active" onclick="downloadCV()">Download CV</button>
+                        </div>
+
+                        <div class="stat-container">
+                            <div class="stat-item">
+                                <span class="stat-number" id="experienceCount" data-target="1">0</span>
+                                <p class="stat-label">Experiences</p>
+                            </div>
+
+                            <div class="stat-separator"></div>
+
+                            <div class="stat-item">
+                                <span class="stat-number" id="projectCount">0</span>
+                                <p class="stat-label">Project done</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="main-content">
+                <section id="About me" class="About me">
+                    <h1>About me</h1><br><br>
+                    <h5 style="color: #969696;">(User Interface and User Experience, Web developing and also Mobile app developing)</h5><br><br><br><br>
+                    <p>I am an enthusiastic <b style="color:#FD6F00;">undergraduate Software Engineering</b> student at SLIIT with a strong focus on crafting meaningful digital experiences. My work spans across <b style="color:#FD6F00;">UI/UX design, web development, front-end engineering, and mobile app development</b>, allowing me to combine creative thinking with technical precision.<br><br>I’m passionate about understanding real user needs and transforming them into clean, intuitive, and functional products. Whether it’s designing a modern interface, developing responsive web applications, or building smooth mobile experiences, I aim to deliver solutions that are both visually appealing and technically robust.<br><br>I enjoy exploring new technologies, staying updated with industry trends, and continuously improving my craft. With a detail-oriented mindset and a drive for excellence, I’m committed to producing high-quality work that reflects professionalism, clarity, and innovation.<br><br>My goal is to grow as a versatile developer and designer while contributing to impact digital solutions that make a difference.</p>
+                    <div class="btn-group">
+                                    <button class="btn" onclick="downloadCV()">Download CV</button>  
+                                </div>
+                </section>
+
+            
+                <section id="Skills" class="Skills">
+                    <h1>Skills</h1><br>
+                    <div class="skills">
+                        
+                        <div class="skill">
+                            <div class="circle" data-percent="85">
+                            <i class="fab fa-html5 fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">HTML</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="85">
+                            <i class="fab fa-css3-alt fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">CSS</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="60">
+                            <i class="fab fa-js fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">JavaScript</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="55">
+                            <i class="fab fa-node-js fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">Node Js</div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="skill">
+                            <div class="circle" data-percent="75">
+                            <i class="fa-solid fa-mobile-screen-button fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">Flutter</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="70">
+                            <i class="fab fa-react fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">React</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="75">
+                            <i class="fas fa-wind fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">Tailwind CSS</div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="skill">
+                            <div class="circle" data-percent="80">
+                            <i class="fab fa-git-alt fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">Git</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="80">
+                            <i class="fas fa-code fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">Vs Code</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="85" aria-hidden="true">
+                            <i class="fab fa-figma fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">Figma</div>
+                            </div>
+                        </div>
+
+                        <div class="skill">
+                            <div class="circle" data-percent="75" aria-hidden="true">
+                            <i class="fa-solid fa-robot fa-2x icon"></i>
+                            </div>
+                            <div class="meta">
+                            <div class="value">0%</div>
+                            <div class="label">Ai prompt</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="Projects" class="Projects">
+                    <h1>Projects</h1><br>
+                    <section class="filter-section">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="uiux">Ui Ux</button>
+                        <button class="filter-btn" data-filter="web">Web</button>
+                        <button class="filter-btn" data-filter="app">App</button>
+                    </section>
+
+                    <section class="projects-grid">
+
+                        <div class="card" data-category="web">
+                            <img src="/resources/profile.png" class="card-img">
+                            <div class="card-body">
+                                <h4 class="tech">HTML | CSS | JS</h4>
+                                <p>A Webapp For New Farmers Who Entered Into The Market...</p>
+                                <a href="#" class="git-btn"><i class="fa-brands fa-github"></i> Git</a>
+                            </div>
+                        </div>
+
+                        <div class="card" data-category="uiux">
+                            <img src="/resources/Desktop - 1.png" class="card-img">
+                            <div class="card-body">
+                                <h4 class="tech">HTML | CSS | JS</h4>
+                                <p>A Webapp For New Farmers Who Entered Into The Market...</p>
+                                <a href="#" class="git-btn"><i class="fa-brands fa-github"></i> Git</a>
+                            </div>
+                        </div>
+
+                        <div class="card" data-category="app">
+                            <img src="/resources/profile.png" class="card-img">
+                            <div class="card-body">
+                                <h4 class="tech">HTML | CSS | JS</h4>
+                                <p>A Webapp For New Farmers Who Entered Into The Market...</p>
+                                <a href="#" class="git-btn"><i class="fa-brands fa-github"></i> Git</a>
+                            </div>
+                        </div>
+
+                        <div class="card" data-category="web">
+                            <img src="/resources/profile.png" class="card-img">
+                            <div class="card-body">
+                                <h4 class="tech">HTML | CSS | JS</h4>
+                                <p>A Webapp For New Farmers Who Entered Into The Market...</p>
+                                <a href="#" class="git-btn"><i class="fa-brands fa-github"></i> Git</a>
+                            </div>
+                        </div>
+
+                        <div class="card" data-category="uiux">
+                            <img src="/resources/Desktop - 1.png" class="card-img">
+                            <div class="card-body">
+                                <h4 class="tech">HTML | CSS | JS</h4>
+                                <p>A Webapp For New Farmers Who Entered Into The Market...</p>
+                                <a href="#" class="git-btn"><i class="fa-brands fa-github"></i> Git</a>
+                            </div>
+                        </div>
+
+                        <div class="card" data-category="app">
+                            <img src="/resources/profile.png" class="card-img">
+                            <div class="card-body">
+                                <h4 class="tech">HTML | CSS | JS</h4>
+                                <p>A Webapp For New Farmers Who Entered Into The Market...</p>
+                                <a href="#" class="git-btn"><i class="fa-brands fa-github"></i> Git</a>
+                            </div>
+                        </div>
+
+                    </section>
+                </section>
+
+                <section id="Contact me" class="Contact me">
+                    <h1>Contact me</h1><br>
+
+                    <div class="contact-section">
+                        <form class="contact-form"
+                            action="https://formsubmit.co/dinishkaridma@gmail.com"
+                            method="POST">
+
+                            <div class="form-grid">
+
+                                <input type="text"
+                                    name="name"
+                                    placeholder="Name"
+                                    class="form-input"
+                                    required>
+
+                                <input type="email"
+                                    name="email"
+                                    placeholder="Email"
+                                    class="form-input"
+                                    required>
+
+                                <input type="text"
+                                    name="phone"
+                                    placeholder="Phone Number"
+                                    class="form-input">
+
+                                <div class="select-wrapper">
+                                    <select name="service"
+                                            class="form-input"
+                                            required>
+                                        <option disabled selected>Service Of Interest</option>
+                                        <option>Web Development</option>
+                                        <option>UI/UX Design</option>
+                                        <option>Mobile App</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+                                </div>
+
+                                <textarea name="message"
+                                        placeholder="Project Details..."
+                                        class="form-input textarea"
+                                        required></textarea>
+                            </div>
+
+                            <!-- FormSubmit options -->
+                            <input type="hidden" name="_subject" value="New Contact Message">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+
+                            <button type="submit" class="submit-btn">Send</button>
+
+                        </form>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+     </div>
+
+      <footer class="footer">
+        <h2 class="footer-title">Supethum Pathirana</h2>
+
+        <ul class="footer-menu">
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#About me">About me</a></li>
+            <li><a href="#Skills">Skills</a></li>
+            <li><a href="#Projects">Projects</a></li>
+            <li><a href="#Contact me">Contact me</a></li>
+        </ul>
+
+        <div class="footer-socials">
+            <a href="https://www.linkedin.com/in/supethum-pathirana-0b6b77333/"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/supethum?tab=projects"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+
+        <hr class="footer-line">
+
+        <p class="footer-credit">© 2025 Supethum Pathirana. All Rights Reserved.</p>
+    </footer>
+     
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+     <script src="script.js"></script>
+    </body>
+</html>
