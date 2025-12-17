@@ -943,13 +943,14 @@ body::before{
 /* --- Footer Base Styles --- */
 .footer {
     background: linear-gradient(145deg, #1a1a1a, #141414);
-    padding: 60px 20px 30px; /* Increased padding for better breathing room */
+    padding: 60px 0 30px; /* Vertical padding only */
     text-align: center;
     color: white;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
-    position: relative;
-    z-index: 1;
     width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 5;
 }
 
 .footer-title {
@@ -962,13 +963,12 @@ body::before{
 
 .footer-menu {
     list-style: none;
+    padding: 0; /* Fixes the gap */
+    margin: 0 auto 30px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; /* Allows items to wrap if they run out of space */
     gap: 40px;
-    padding: 0;
-    margin: 0 auto 30px;
-    max-width: 1000px;
+    width: 100%;
 }
 
 .footer-menu li a {
@@ -1048,14 +1048,10 @@ body::before{
 
 /* --- Mobile Responsive Fixes --- */
 @media (max-width: 768px) {
-    .footer {
-        padding: 40px 15px 20px;
-    }
-
     .footer-menu {
-        flex-direction: column; /* Stacks the links vertically */
-        gap: 20px; /* Space between vertical links */
-        margin-bottom: 40px;
+        flex-direction: column;
+        align-items: center; /* Ensures perfect vertical centering */
+        gap: 20px;
     }
 
     .footer-menu li {
