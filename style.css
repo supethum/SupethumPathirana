@@ -118,25 +118,8 @@ header{
     filter: drop-shadow(0 2px 8px rgba(253, 111, 0, 0.3));
 }
 
-nav .togglebtn{
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    right: 3%;
-    z-index: 5;
-    cursor: pointer;
-    display: none;
-}
-nav .togglebtn span{
-    display: block;
-    background-color: #FD6F00;
-    margin: 5px 0px;
-    width:100%;
-    height:3px;
-    transition: 0.3s;
-    transition-property:  transform, opacity;
-
-}
+/* Mobile toggle removed: site uses a fixed desktop-style navbar */
+/* nav .togglebtn removed to keep a consistent non-responsive header */
 nav {
     background-color: transparent;
 }
@@ -358,79 +341,8 @@ nav .navlinks li a:hover {
     margin: 0 10px; 
 }
 
-@media (max-width: 480px) {
-    .stat-container {
-        flex-direction: column; 
-    }
-    .stat-separator {
-        width: 80%;
-        height: 1px;
-        margin: 10px 0;
-    }
-    .stat-item {
-        padding: 10px 0;
-    }
-}
-/* Respnosiv design & displaying navbar for small screen */
-@media(max-width:930px)
-{
-    nav .togglebtn{
-        display: initial;
-    }
-    .click {
-        top:45px;
-    }
-    .click span{
-        position: absolute;
-        margin-top:12px
-    }
-    .click span:first-child{
-        transform: rotate(-40deg);
-    }
-    .click span:nth-child(2)
-    {
-        opacity: 0;
-        margin:0;
-    }
-    .click span:last-child{
-        transform: rotate(45deg);
-        top:0;
-    }
-    nav .navlinks{
-        position: absolute;
-        top:110px;
-        right:-100%;
-        bottom: 0;
-        width: 60%;
-        height: 100vh;
-        background-color: #141414;
-        z-index: 3;
-        box-shadow: 5px 13px 30px rgba(0,0,0,0.1);
-        transition: 0.5s;
-        padding: 25px 0px;
-    }
-    nav .navlinks li{
-        display: block;
-    }
-    nav .navlinks li a{
-        display: block;
-        margin-bottom: 15px;
-        text-align: center;
-    }
-    nav .navlinks.open{
-        right:0;
-    }
-}
-@media(max-width:768px)
-{
-    .container{
-        flex-direction: column;
-        padding-top:2rem
-    }
-    .hero-text{
-        padding:40px 0px;
-    }
-}
+/* All responsive rules removed to enforce a fixed layout across viewports */
+/* removed small-screen container adjustments */
 
 .Skills, .About.me, .Contact.me, .Projects {
 padding: 80px;
@@ -697,18 +609,7 @@ color:#dddddd;
         inset 0 -2px 0 rgba(0, 0, 0, 0.3);
 }
 
-@media (max-width: 768px) {
-    .form-grid {
-        grid-template-columns: 1fr;
-    }
-    .textarea {
-        grid-column: span 1;
-    }
-    .submit-btn {
-        float: none;
-        width: 100%;
-    }
-}
+/* removed form responsive rules */
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
@@ -1016,17 +917,7 @@ body::before{
 }
 
 /* Responsive typography tweaks */
-@media (max-width:768px){
- .hero-text h1{ font-size: 36px;}
- .hero-text h2 span{ font-size: 24px;}
- .hero-pic{ width:260px; height:260px;}
- .container{ padding-top:4rem;}
-}
-
-@media (max-width:420px){
- .hero-text h1{ font-size: 28px;}
- .hero-text h2 span{ font-size: 20px;}
-}
+/* removed responsive typography tweaks */
 
 /* small utility for subtle elevated sections */
 .elevated {
