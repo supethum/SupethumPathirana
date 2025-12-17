@@ -189,8 +189,8 @@ nav .navlinks li a:hover {
     border-radius: 50%
 }
 .container .hero-pic{
-    width: 500px;
-    height: 500px;
+    width: clamp(400px, 35vw, 500px);
+    height: clamp(400px, 35vw, 500px);
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 4px 0px 5px #FD6F00;
@@ -860,7 +860,7 @@ color:#dddddd;
     width: 90%;
     margin: 10px auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 35px;
 }
 
