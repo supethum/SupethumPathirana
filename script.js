@@ -186,6 +186,26 @@ filterButtons.forEach(btn => {
     });
 });
 
+// Skill filter
+const skillFilterButtons = document.querySelectorAll(".Skills .filter-btn");
+const skills = document.querySelectorAll(".skill");
+
+skillFilterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        skillFilterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.getAttribute("data-filter");
+
+        skills.forEach(skill => {
+            if (category === "all" || skill.getAttribute("data-category") === category) {
+                skill.style.display = "block";
+            } else {
+                skill.style.display = "none";
+            }
+        });
+    });
+});
 
 // Menu toggle & Typed intro & Canvas particle animation
 document.addEventListener('DOMContentLoaded', () => {
