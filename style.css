@@ -1314,6 +1314,14 @@ body::before{
 
 /* Tablets (768px) */
 @media (max-width: 768px) {
+    header {
+        padding: 10px 15px;
+    }
+
+    .logo-text {
+        margin-left: 0;
+    }
+
     .container {
         flex-direction: column;
         padding: 4rem 1.5rem 2rem;
@@ -1374,6 +1382,10 @@ body::before{
 
     .card {
         max-width: 100%;
+    }
+
+    .footer {
+        padding: 40px 15px 20px;
     }
 
     .footer-menu {
@@ -1483,9 +1495,13 @@ body::before{
 
 /* Small Mobile (480px) */
 @media (max-width: 480px) {
+    header {
+        padding: 10px 10px;
+    }
+
     .logo-text {
         font-size: 24px;
-        margin-left: 1rem;
+        margin-left: 0;
     }
 
     .container {
@@ -1587,7 +1603,7 @@ body::before{
     }
 
     .footer {
-        padding: 30px 15px 15px;
+        padding: 30px 10px 15px;
     }
 
     .footer-title {
