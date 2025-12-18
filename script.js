@@ -17,6 +17,7 @@ function updateProgressBar() {
 //Scroll smooth
 function scrollToSection(elementId) {
     const targetElement = document.getElementById(elementId);
+    
     if (targetElement) {
         targetElement.scrollIntoView({
             behavior: 'smooth', 
@@ -28,55 +29,23 @@ function scrollToSection(elementId) {
 //cv
 function downloadCV() {
   const link = document.createElement("a");
-  link.href = "resources/cv.pdf";
+  link.href = "/resources/cv.pdf";
   link.download = "Supethum_Pathirana_CV.pdf";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
 }
 
-// Global variable for mobile menu functions
-let closeMenu;
-
-//Animated skills & Dark Mode
+//Animated skills
 document.addEventListener("DOMContentLoaded", () => {
-  // --- THEME TOGGLE LOGIC ---
-  const themeBtn = document.getElementById('theme-toggle');
-  const body = document.body;
-  const icon = themeBtn.querySelector('i');
-
-  // Check LocalStorage for saved theme
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
-    body.classList.add('light-mode');
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
-  }
-
-  themeBtn.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-    
-    // Swap Icon
-    if (body.classList.contains('light-mode')) {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'light');
-    } else {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'dark');
-    }
-  });
-
-
-  // Update project count dynamically
+  // Update project count dynamically FIRST
   const projectCount = document.querySelectorAll('.projects-grid .card').length;
   const projectCountEl = document.getElementById('projectCount');
   if (projectCountEl) {
     projectCountEl.setAttribute('data-target', projectCount);
   }
 
-  // Counter animation
+  // Counter animation for stats
   const statElements = document.querySelectorAll('[data-target]');
   const statsObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -90,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   statElements.forEach(el => statsObserver.observe(el));
 
   const skills = Array.from(document.querySelectorAll(".skill"));
+
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -100,109 +70,46 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-  }, { threshold: 0.55 });
+  }, {
+    threshold: 0.55
+  });
 
   skills.forEach(s => observer.observe(s));
-
-  // === MOBILE NAVIGATION TOGGLE ===
-  const nav = document.querySelector('nav');
-  const navLinks = document.querySelector('.navlinks');
-  
-  const toggleBtn = document.createElement('div');
-  toggleBtn.className = 'menu-toggle';
-  toggleBtn.innerHTML = `
-      <span></span>
-      <span></span>
-      <span></span>
-  `;
-  
-  if(nav && navLinks) {
-    nav.insertBefore(toggleBtn, navLinks);
-  }
-  
-  const overlay = document.createElement('div');
-  overlay.className = 'nav-overlay';
-  document.body.appendChild(overlay);
-  
-  function toggleMenu() {
-      toggleBtn.classList.toggle('active');
-      navLinks.classList.toggle('active');
-      overlay.classList.toggle('active');
-      
-      if (navLinks.classList.contains('active')) {
-          document.body.style.overflow = 'hidden';
-      } else {
-          document.body.style.overflow = '';
-      }
-  }
-
-  toggleBtn.addEventListener('click', toggleMenu);
-  
-  closeMenu = function() {
-      toggleBtn.classList.remove('active');
-      navLinks.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.style.overflow = '';
-  };
-  
-  overlay.addEventListener('click', closeMenu);
-  
-  const navItems = document.querySelectorAll('.navlinks li a');
-  navItems.forEach(item => {
-      item.addEventListener('click', closeMenu);
-  });
-  
-  window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-          closeMenu();
-      }
-  });
-  
-  window.addEventListener('orientationchange', function() {
-      setTimeout(function() {
-          if (window.innerWidth > 768) {
-              closeMenu();
-          }
-      }, 200);
-  });
-  // === END MOBILE TOGGLE ===
-
-  // Typed.js
-  if (window.Typed) {
-    new Typed('.input', {
-      strings: ['Frontend Developer', 'UI/UX Designer', 'Web Developer', 'App Developer'],
-      typeSpeed: 50,
-      backSpeed: 80,
-      loop: true
-    });
-  }
 });
 
 
 function animateSkill(skillEl) {
   const circle = skillEl.querySelector(".circle");
   const valueEl = skillEl.querySelector(".value");
+
   const percent = Math.max(0, Math.min(100, Number(circle.getAttribute("data-percent") || 0)));
+
   const duration = 1200 + Math.random() * 600;
   const start = performance.now();
   const startPercent = 0; 
 
+  // Add entrance animation
   skillEl.style.opacity = '0';
   skillEl.style.transform = 'scale(0.8) translateY(20px)';
   
   function step(now) {
     const elapsed = now - start;
     const t = Math.min(1, elapsed / duration);
+
     const eased = 1 - Math.pow(1 - t, 3);
+
     const current = startPercent + (percent - startPercent) * eased;
+
     const angle = current * 3.6;
     circle.style.setProperty("--angle", angle + "deg");
 
     valueEl.textContent = Math.round(current) + "%";
     
+    // Animate entrance: opacity and scale
     skillEl.style.opacity = eased;
     skillEl.style.transform = `scale(${0.8 + eased * 0.2}) translateY(${20 - eased * 20}px)`;
     
+    // Add glow effect during animation
     if (eased > 0.3) {
       circle.style.boxShadow = `
         inset 0 4px 8px rgba(255, 255, 255, 0.2),
@@ -219,12 +126,18 @@ function animateSkill(skillEl) {
       valueEl.textContent = percent + "%";
       skillEl.style.opacity = '1';
       skillEl.style.transform = 'scale(1) translateY(0px)';
-      // Reset default box shadow based on theme logic handles in CSS
+      // Reset to variable-based shadow or hardcode for specific end state
+      // Note: In light mode, JS resetting this inline style might override CSS hover. 
+      // It is safer to clear inline properties that conflict after animation if possible, 
+      // but keeping it simple here as per instruction to not change logic deeply.
+      circle.style.boxShadow = ''; 
     }
   }
+
   requestAnimationFrame(step);
 }
 
+// Counter animation function
 function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-target'), 10);
   const duration = 1500;
@@ -233,26 +146,35 @@ function animateCounter(element) {
   function step(now) {
     const elapsed = now - start;
     const progress = Math.min(1, elapsed / duration);
+    
+    // Easing function for smooth animation
     const eased = 1 - Math.pow(1 - progress, 3);
     const current = Math.floor(eased * target);
+    
     element.textContent = current + '+';
+    
     if (progress < 1) {
       requestAnimationFrame(step);
     } else {
       element.textContent = target + '+';
     }
   }
+  
   requestAnimationFrame(step);
 }
 
+//project card
 const filterButtons = document.querySelectorAll(".filter-btn");
 const cards = document.querySelectorAll(".card");
 
 filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
+
         filterButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+
         const category = btn.getAttribute("data-filter");
+
         cards.forEach(card => {
             if (category === "all" || card.getAttribute("data-category") === category) {
                 card.style.display = "block";
@@ -260,14 +182,80 @@ filterButtons.forEach(btn => {
                 card.style.display = "none";
             }
         });
+
     });
 });
 
-// --- BACKGROUND PARTICLES ---
+
+// Menu toggle & Typed intro & Canvas particle animation
+document.addEventListener('DOMContentLoaded', () => {
+  // Mobile menu toggle
+  const togglebtn = document.querySelector('.togglebtn');
+  const nav = document.querySelector('.navlinks');
+  const navLinksItems = document.querySelectorAll('.navlinks li a'); // Select all menu links
+
+  if (togglebtn && nav) {
+    togglebtn.addEventListener('click', function () {
+      this.classList.toggle('click');
+      nav.classList.toggle('open');
+    });
+
+    // Close menu when a link is clicked
+    navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                togglebtn.classList.remove('click');
+            }
+        });
+    });
+  }
+
+  // Typed.js intro animation
+  if (window.Typed) {
+    new Typed('.input', {
+      strings: ['Frontend Developer', 'UI/UX Designer', 'Web Developer', 'App Developer'],
+      typeSpeed: 50,
+      backSpeed: 80,
+      loop: true
+    });
+  }
+  
+  // --- THEME TOGGLE LOGIC ---
+  const themeSwitch = document.getElementById('themeSwitch');
+  const icon = themeSwitch.querySelector('i');
+  
+  // Check for saved preference
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-mode');
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+  }
+
+  themeSwitch.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    
+    if (document.body.classList.contains('light-mode')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    }
+  });
+
+
+});
+
+// --- BACKGROUND PARTICLE ANIMATION ---
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
+
 let particlesArray;
 
+// Resize canvas
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -286,21 +274,28 @@ class Particle {
         this.size = size;
         this.color = color;
     }
+    // Method to draw individual particle
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = '#e26403ff'; // Always orange particles
+        ctx.fillStyle = '#e26403ff'; // Keeping orange for both themes as it works on white too
         ctx.fill();
     }
+    // Check particle position, check mouse position, move particle, draw particle
     update() {
-        if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
-        if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+        if (this.x > canvas.width || this.x < 0) {
+            this.directionX = -this.directionX;
+        }
+        if (this.y > canvas.height || this.y < 0) {
+            this.directionY = -this.directionY;
+        }
         this.x += this.directionX;
         this.y += this.directionY;
         this.draw();
     }
 }
 
+// Create particle pool
 function initParticles() {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
@@ -310,10 +305,13 @@ function initParticles() {
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 0.5) - 0.25;
         let directionY = (Math.random() * 0.5) - 0.25;
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, '#FD6F00'));
+        let color = '#FD6F00';
+
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
     }
 }
 
+// Check if particles are close enough to draw a line between them
 function connectParticles() {
     let opacityValue = 1;
     for (let a = 0; a < particlesArray.length; a++) {
@@ -333,9 +331,9 @@ function connectParticles() {
     }
 }
 
+// Animation loop
 function animateParticles() {
     requestAnimationFrame(animateParticles);
-    // ClearRect makes the canvas transparent, allowing CSS bg color to show through
     ctx.clearRect(0, 0, innerWidth, innerHeight);
 
     for (let i = 0; i < particlesArray.length; i++) {
