@@ -3,11 +3,8 @@ document.addEventListener('scroll', updateProgressBar);
 
 function updateProgressBar() {
     const scrollTop = document.documentElement.scrollTop;
-
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
     const scrolledPercentage = Math.max(0, Math.min(100, (scrollTop / scrollHeight) * 100));
-
     const progressBar = document.getElementById('progressBar');
     
     if (progressBar && scrollHeight > 0) {
@@ -20,7 +17,6 @@ function updateProgressBar() {
 //Scroll smooth
 function scrollToSection(elementId) {
     const targetElement = document.getElementById(elementId);
-    
     if (targetElement) {
         targetElement.scrollIntoView({
             behavior: 'smooth', 
@@ -39,16 +35,48 @@ function downloadCV() {
   document.body.removeChild(link);
 }
 
-//Animated skills
+// Global variable for mobile menu functions
+let closeMenu;
+
+//Animated skills & Dark Mode
 document.addEventListener("DOMContentLoaded", () => {
-  // Update project count dynamically FIRST
+  // --- THEME TOGGLE LOGIC ---
+  const themeBtn = document.getElementById('theme-toggle');
+  const body = document.body;
+  const icon = themeBtn.querySelector('i');
+
+  // Check LocalStorage for saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    body.classList.add('light-mode');
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+  }
+
+  themeBtn.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    
+    // Swap Icon
+    if (body.classList.contains('light-mode')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+    }
+  });
+
+
+  // Update project count dynamically
   const projectCount = document.querySelectorAll('.projects-grid .card').length;
   const projectCountEl = document.getElementById('projectCount');
   if (projectCountEl) {
     projectCountEl.setAttribute('data-target', projectCount);
   }
 
-  // Counter animation for stats
+  // Counter animation
   const statElements = document.querySelectorAll('[data-target]');
   const statsObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -62,7 +90,6 @@ document.addEventListener("DOMContentLoaded", () => {
   statElements.forEach(el => statsObserver.observe(el));
 
   const skills = Array.from(document.querySelectorAll(".skill"));
-
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -73,17 +100,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-  }, {
-    threshold: 0.55
-  });
+  }, { threshold: 0.55 });
 
   skills.forEach(s => observer.observe(s));
 
-  // === MOBILE NAVIGATION TOGGLE (ADDED) ===
+  // === MOBILE NAVIGATION TOGGLE ===
   const nav = document.querySelector('nav');
   const navLinks = document.querySelector('.navlinks');
   
-  // Create toggle button HTML
   const toggleBtn = document.createElement('div');
   toggleBtn.className = 'menu-toggle';
   toggleBtn.innerHTML = `
@@ -92,71 +116,58 @@ document.addEventListener("DOMContentLoaded", () => {
       <span></span>
   `;
   
-  // Insert toggle button before nav
-  nav.insertBefore(toggleBtn, nav.firstChild);
+  if(nav && navLinks) {
+    nav.insertBefore(toggleBtn, navLinks);
+  }
   
-  // Create overlay element
   const overlay = document.createElement('div');
   overlay.className = 'nav-overlay';
   document.body.appendChild(overlay);
   
-  // Toggle navigation
-  toggleBtn.addEventListener('click', function() {
+  function toggleMenu() {
       toggleBtn.classList.toggle('active');
       navLinks.classList.toggle('active');
       overlay.classList.toggle('active');
       
-      // Prevent body scroll when menu is open
       if (navLinks.classList.contains('active')) {
           document.body.style.overflow = 'hidden';
       } else {
           document.body.style.overflow = '';
       }
-  });
+  }
+
+  toggleBtn.addEventListener('click', toggleMenu);
   
-  // Close menu when overlay is clicked
-  overlay.addEventListener('click', function() {
+  closeMenu = function() {
       toggleBtn.classList.remove('active');
       navLinks.classList.remove('active');
       overlay.classList.remove('active');
       document.body.style.overflow = '';
-  });
+  };
   
-  // Close menu when a nav link is clicked
+  overlay.addEventListener('click', closeMenu);
+  
   const navItems = document.querySelectorAll('.navlinks li a');
   navItems.forEach(item => {
-      item.addEventListener('click', function() {
-          toggleBtn.classList.remove('active');
-          navLinks.classList.remove('active');
-          overlay.classList.remove('active');
-          document.body.style.overflow = '';
-      });
+      item.addEventListener('click', closeMenu);
   });
   
-  // Close menu on window resize if screen becomes larger
   window.addEventListener('resize', function() {
       if (window.innerWidth > 768) {
-          toggleBtn.classList.remove('active');
-          navLinks.classList.remove('active');
-          overlay.classList.remove('active');
-          document.body.style.overflow = '';
+          closeMenu();
       }
   });
   
-  // Handle orientation change
   window.addEventListener('orientationchange', function() {
       setTimeout(function() {
           if (window.innerWidth > 768) {
-              toggleBtn.classList.remove('active');
-              navLinks.classList.remove('active');
-              overlay.classList.remove('active');
-              document.body.style.overflow = '';
+              closeMenu();
           }
       }, 200);
   });
-  // === END MOBILE NAVIGATION TOGGLE ===
+  // === END MOBILE TOGGLE ===
 
-  // Typed.js intro animation
+  // Typed.js
   if (window.Typed) {
     new Typed('.input', {
       strings: ['Frontend Developer', 'UI/UX Designer', 'Web Developer', 'App Developer'],
@@ -171,35 +182,27 @@ document.addEventListener("DOMContentLoaded", () => {
 function animateSkill(skillEl) {
   const circle = skillEl.querySelector(".circle");
   const valueEl = skillEl.querySelector(".value");
-
   const percent = Math.max(0, Math.min(100, Number(circle.getAttribute("data-percent") || 0)));
-
   const duration = 1200 + Math.random() * 600;
   const start = performance.now();
   const startPercent = 0; 
 
-  // Add entrance animation
   skillEl.style.opacity = '0';
   skillEl.style.transform = 'scale(0.8) translateY(20px)';
   
   function step(now) {
     const elapsed = now - start;
     const t = Math.min(1, elapsed / duration);
-
     const eased = 1 - Math.pow(1 - t, 3);
-
     const current = startPercent + (percent - startPercent) * eased;
-
     const angle = current * 3.6;
     circle.style.setProperty("--angle", angle + "deg");
 
     valueEl.textContent = Math.round(current) + "%";
     
-    // Animate entrance: opacity and scale
     skillEl.style.opacity = eased;
     skillEl.style.transform = `scale(${0.8 + eased * 0.2}) translateY(${20 - eased * 20}px)`;
     
-    // Add glow effect during animation
     if (eased > 0.3) {
       circle.style.boxShadow = `
         inset 0 4px 8px rgba(255, 255, 255, 0.2),
@@ -216,19 +219,12 @@ function animateSkill(skillEl) {
       valueEl.textContent = percent + "%";
       skillEl.style.opacity = '1';
       skillEl.style.transform = 'scale(1) translateY(0px)';
-      circle.style.boxShadow = `
-        inset 0 4px 8px rgba(255, 255, 255, 0.2),
-        inset 0 -4px 8px rgba(0, 0, 0, 0.4),
-        0 8px 20px rgba(0, 0, 0, 0.4),
-        0 0 20px rgba(253, 111, 0, 0.3)
-      `;
+      // Reset default box shadow based on theme logic handles in CSS
     }
   }
-
   requestAnimationFrame(step);
 }
 
-// Counter animation function
 function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-target'), 10);
   const duration = 1500;
@@ -237,35 +233,26 @@ function animateCounter(element) {
   function step(now) {
     const elapsed = now - start;
     const progress = Math.min(1, elapsed / duration);
-    
-    // Easing function for smooth animation
     const eased = 1 - Math.pow(1 - progress, 3);
     const current = Math.floor(eased * target);
-    
     element.textContent = current + '+';
-    
     if (progress < 1) {
       requestAnimationFrame(step);
     } else {
       element.textContent = target + '+';
     }
   }
-  
   requestAnimationFrame(step);
 }
 
-//project card
 const filterButtons = document.querySelectorAll(".filter-btn");
 const cards = document.querySelectorAll(".card");
 
 filterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-
         filterButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-
         const category = btn.getAttribute("data-filter");
-
         cards.forEach(card => {
             if (category === "all" || card.getAttribute("data-category") === category) {
                 card.style.display = "block";
@@ -273,18 +260,14 @@ filterButtons.forEach(btn => {
                 card.style.display = "none";
             }
         });
-
     });
 });
 
-
-// --- BACKGROUND PARTICLE ANIMATION ---
+// --- BACKGROUND PARTICLES ---
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
-
 let particlesArray;
 
-// Resize canvas
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -303,28 +286,21 @@ class Particle {
         this.size = size;
         this.color = color;
     }
-    // Method to draw individual particle
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = '#e26403ff';
+        ctx.fillStyle = '#e26403ff'; // Always orange particles
         ctx.fill();
     }
-    // Check particle position, check mouse position, move particle, draw particle
     update() {
-        if (this.x > canvas.width || this.x < 0) {
-            this.directionX = -this.directionX;
-        }
-        if (this.y > canvas.height || this.y < 0) {
-            this.directionY = -this.directionY;
-        }
+        if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+        if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
         this.x += this.directionX;
         this.y += this.directionY;
         this.draw();
     }
 }
 
-// Create particle pool
 function initParticles() {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
@@ -334,13 +310,10 @@ function initParticles() {
         let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
         let directionX = (Math.random() * 0.5) - 0.25;
         let directionY = (Math.random() * 0.5) - 0.25;
-        let color = '#FD6F00';
-
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+        particlesArray.push(new Particle(x, y, directionX, directionY, size, '#FD6F00'));
     }
 }
 
-// Check if particles are close enough to draw a line between them
 function connectParticles() {
     let opacityValue = 1;
     for (let a = 0; a < particlesArray.length; a++) {
@@ -360,9 +333,9 @@ function connectParticles() {
     }
 }
 
-// Animation loop
 function animateParticles() {
     requestAnimationFrame(animateParticles);
+    // ClearRect makes the canvas transparent, allowing CSS bg color to show through
     ctx.clearRect(0, 0, innerWidth, innerHeight);
 
     for (let i = 0; i < particlesArray.length; i++) {
