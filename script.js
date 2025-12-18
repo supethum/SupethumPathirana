@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Typed.js intro animation
   if (window.Typed) {
     new Typed('.input', {
-      strings: ['Frontend Developer', 'UI/UX Designer', 'Web Developer', 'App Developer'],
+      strings: ['Frontend Developer', 'UI/UX Designer', 'App Developer'],
       typeSpeed: 50,
       backSpeed: 80,
       loop: true
