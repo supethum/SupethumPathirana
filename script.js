@@ -158,6 +158,20 @@ function animateCounter(element) {
   requestAnimationFrame(step);
 }
 
+//education and experience tabs
+const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible'); 
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+const animatedElements = document.querySelectorAll('[data-animate]');
+animatedElements.forEach(el => observer.observe(el));
+
 //project card
 const filterButtons = document.querySelectorAll(".filter-btn");
 const cards = document.querySelectorAll(".card");
