@@ -38,7 +38,6 @@ function downloadCV() {
 
 //Animated skills
 document.addEventListener("DOMContentLoaded", () => {
-  // Update project count dynamically FIRST
   const projectCount = document.querySelectorAll('.projects-grid .card').length;
   const projectCountEl = document.getElementById('projectCount');
   if (projectCountEl) {
@@ -126,10 +125,6 @@ function animateSkill(skillEl) {
       valueEl.textContent = percent + "%";
       skillEl.style.opacity = '1';
       skillEl.style.transform = 'scale(1) translateY(0px)';
-      // Reset to variable-based shadow or hardcode for specific end state
-      // Note: In light mode, JS resetting this inline style might override CSS hover. 
-      // It is safer to clear inline properties that conflict after animation if possible, 
-      // but keeping it simple here as per instruction to not change logic deeply.
       circle.style.boxShadow = ''; 
     }
   }
@@ -212,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mobile menu toggle
   const togglebtn = document.querySelector('.togglebtn');
   const nav = document.querySelector('.navlinks');
-  const navLinksItems = document.querySelectorAll('.navlinks li a'); // Select all menu links
+  const navLinksItems = document.querySelectorAll('.navlinks li a'); 
 
   if (togglebtn && nav) {
     togglebtn.addEventListener('click', function () {
@@ -298,10 +293,9 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = '#e26403ff'; // Keeping orange for both themes as it works on white too
+        ctx.fillStyle = '#e26403ff'; 
         ctx.fill();
     }
-    // Check particle position, check mouse position, move particle, draw particle
     update() {
         if (this.x > canvas.width || this.x < 0) {
             this.directionX = -this.directionX;
