@@ -317,7 +317,7 @@ nav .togglebtn span {
         align-items: center;
         gap: 2.5rem;
         
-        z-index: 98;
+        z-index: 9999 !important;
         
         /* Hidden State */
         opacity: 0;
