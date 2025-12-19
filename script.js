@@ -358,3 +358,68 @@ function animateParticles() {
 
 initParticles();
 animateParticles();
+
+// Contact form: submit via AJAX, show success message and scroll to Home
+(function() {
+  const contactForm = document.querySelector('.contact-form');
+  if (!contactForm) return;
+
+  function showFormMessage(msg) {
+    let el = document.querySelector('.form-success');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'form-success';
+      el.style.position = 'fixed';
+      el.style.top = '16px';
+      el.style.left = '50%';
+      el.style.transform = 'translateX(-50%)';
+      el.style.background = 'var(--accent-color)';
+      el.style.color = '#fff';
+      el.style.padding = '10px 16px';
+      el.style.borderRadius = '8px';
+      el.style.zIndex = '11000';
+      el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.35)';
+      document.body.appendChild(el);
+    }
+    el.textContent = msg;
+    el.style.opacity = '1';
+    el.style.transition = 'opacity 0.4s ease';
+    setTimeout(() => { el.style.opacity = '0'; }, 2200);
+    setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 3000);
+  }
+
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    if (submitBtn) submitBtn.disabled = true;
+
+    const action = contactForm.getAttribute('action') || window.location.href;
+    const method = (contactForm.getAttribute('method') || 'POST').toUpperCase();
+    const formData = new FormData(contactForm);
+
+    try {
+      const res = await fetch(action, {
+        method: method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (res.ok) {
+        showFormMessage('Sent successfully — thank you!');
+        contactForm.reset();
+        // scroll to Home section (small delay so message is visible)
+        setTimeout(() => scrollToSection('Home'), 300);
+      } else {
+        // Fallback to normal submit if server didn't accept AJAX
+        contactForm.submit();
+      }
+    } catch (err) {
+      // Network/CORS fallback: submit the form normally
+      contactForm.submit();
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+})();
