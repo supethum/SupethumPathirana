@@ -720,7 +720,10 @@ body.light-mode .hero-pic img {
             position: relative;
             padding-left: 30px;
             margin-bottom: 25px;
-            border-left: 2px solid #333; /* The vertical line */
+            border-left: 2px solid #333;
+            display: flex;             
+            flex-wrap: wrap;
+            margin-right: auto;
         }
 
         .timeline-item:last-child {
@@ -748,22 +751,19 @@ body.light-mode .hero-pic img {
             margin-bottom: 5px;
         }
 
-        .place {
-            color: #e0e0e0;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .date {
+        .date{
             color: #888;
             font-size: 0.85rem;
             margin-bottom: 10px;
+            margin-top: 5px;
+            margin-right: auto;
         }
 
-        .description {
-            color: #bbb;
-            font-size: 0.9rem;
-            line-height: 1.4;
+        .date2 {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            margin-left: auto;
         }
 
         /* --- SKILLS GRID STYLES --- */
