@@ -468,6 +468,7 @@ body.light-mode .hero-pic img {
 }
 
 .btn.active{
+    padding: 14px 25px;
     color:#141414;
     background-color: var(--accent-color);
     border: 1px solid var(--accent-color);
