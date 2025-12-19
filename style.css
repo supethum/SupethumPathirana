@@ -1019,7 +1019,7 @@ body.light-mode .form-input:focus {
 }
 
 body.light-mode .submit-btn {
-    color: var(--accent-color);
+    color: #000000;
 }
 
 .submit-btn:hover {
@@ -1033,6 +1033,12 @@ body.light-mode .submit-btn {
         inset 0 2px 0 rgba(255, 255, 255, 0.2),
         inset 0 -2px 0 rgba(0, 0, 0, 0.3);
 }
+
+body.light-mode .submit-btn:hover {
+    color: #000000;
+}
+
+
 
 @media (max-width: 768px) {
     .form-grid {
