@@ -1344,6 +1344,9 @@ body.light-mode .submit-btn:hover {
     margin-bottom: 20px;
     text-shadow: 0 0 20px var(--accent-glow);
     text-align: center;
+    text-align: center;
+    width: 100%;     /* Ensures the text box spans the whole width */
+    display: block;
 }
 
 .footer-menu {
