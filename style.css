@@ -421,26 +421,34 @@ body.light-mode .hero-pic img {
     filter: grayscale(20%); 
 }
 
-.hero-text{
+.hero-text {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 10px; 
+    justify-content: center; 
+    height: 100%; 
 }
 
-.hero-text.Texts{
-    gap: 5px;
+.hero-text h1, 
+.hero-text h2, 
+.hero-text h3 {
+    margin: 0;     
+    line-height: 1.2; 
 }
-.hero-text h3{
+
+.hero-text h3 {
     color: var(--text-secondary);
     font-size: 20px;
 }
-.hero-text h2 span{
+
+.hero-text h2 span {
     color: var(--accent-color);
     font-size: 45px;
     font-family: "Share Tech Mono", monospace;
     letter-spacing: 1px;
 }
-.hero-text h1{
+
+.hero-text h1 {
     color: var(--text-primary);
     font-size: 65px;
 }
@@ -1129,8 +1137,12 @@ body.light-mode .card-body p {
 
 /* BUTTON */
 .git-btn {
-    display: inline-block;
-    margin-top: 15px;
+    display: flex;            
+    margin: 15px auto;        
+    justify-content: center;  
+    
+    max-width: 25%;
+    align-items: center;     
     padding: 10px 20px;
     color: var(--accent-color);
     font-size: 12px;
