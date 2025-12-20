@@ -402,10 +402,10 @@ nav .togglebtn span {
 
 .container .ring-1 {
     position: absolute;
-    width: 115%;
-    height: 115%;
-    top: -8%;
-    left: -8%;
+    width: 105%;
+    height: 105%;
+    top: -3%;
+    left: -3%;
     
     border-radius: 50%;
     border: 2px dashed var(--primary);
