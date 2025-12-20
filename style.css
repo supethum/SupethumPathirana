@@ -631,10 +631,10 @@ body.light-mode .hero-pic img {
 {
     .container{
         flex-direction: column;
-        padding-top:2rem
+        /* FIX: Increased padding to create space between header and hero */
+        padding-top: 8.5rem; 
     }
     
-    /* MODIFIED: Reduced padding for mobile view to decrease gap */
     .hero-text{
         padding: 0px 0px 40px 0px; 
     }
@@ -1640,18 +1640,18 @@ body::before{
 
     .container {
         flex-direction: column;
-        padding-top: 5rem;
+        /* FIX: Increased padding to create space between header and hero */
+        padding-top: 8.5rem; 
         padding-left: 20px;
         padding-right: 20px;
         text-align: center;
     }
 
-    /* FIX: Reduced margin-bottom to close the gap */
     .container .hero-pic,
     .container .hero-bg {
         width: 280px;
         height: 280px;
-        margin-bottom: 20px; /* Reduced from 40px */
+        margin-bottom: 20px; 
         margin-left: auto;   
         margin-right: auto;  
     }
@@ -1665,7 +1665,7 @@ body::before{
     }
 
     .hero-text h2 span {
-        font-size: 24px;
+        font-size: 28px;
     }
 
     .hero-text h3 {
@@ -1914,7 +1914,6 @@ body::before{
         margin-left: 0.5rem;
     }
 
-    /* FIX: Reduced margin-bottom further for small screens */
     .container .hero-pic,
     .container .hero-bg {
         width: 220px;
@@ -1929,7 +1928,7 @@ body::before{
     }
 
     .hero-text h2 span {
-        font-size: 20px;
+        font-size: 24px;
     }
 
     .hero-text h3 {
@@ -2051,7 +2050,7 @@ body::before{
     }
 
     .hero-text h2 span {
-        font-size: 18px;
+        font-size: 20px;
     }
 }
 
