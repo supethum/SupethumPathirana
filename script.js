@@ -29,7 +29,7 @@ function scrollToSection(elementId) {
 //cv
 function downloadCV() {
   const link = document.createElement("a");
-  link.href = "/resources/cv.pdf";
+  link.href = "resources/cv.pdf";
   link.download = "Supethum_Pathirana_CV.pdf";
   document.body.appendChild(link);
   link.click();
