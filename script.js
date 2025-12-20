@@ -27,15 +27,15 @@ function scrollToSection(elementId) {
 }
 
 //cv
-function downloadCV() {
-  const link = document.createElement("a");
-  link.href = "resources/cv.pdf";
-  link.download = "Supethum_Pathirana_CV.pdf";
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
+document.getElementById("cvBtn").addEventListener("click", function() {
+    const link = document.createElement("a");
+    // Make sure this path is correct relative to your HTML file
+    link.href = "resources/cv.pdf"; 
+    link.download = "Supethum_Pathirana_CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
 //Animated skills
 document.addEventListener("DOMContentLoaded", () => {
   const projectCount = document.querySelectorAll('.projects-grid .card').length;
