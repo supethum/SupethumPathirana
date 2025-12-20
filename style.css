@@ -23,6 +23,10 @@
     
     --circle-inner: rgba(17, 17, 17, 0.65);
     --filter-btn-bg: linear-gradient(145deg, #242424, #1f1f1f);
+
+    /*ring1 and ring2*/
+    --primary: #ff6b00; 
+    --secondary: #ff6b00;
 }
 
 body.light-mode {
@@ -398,12 +402,10 @@ nav .togglebtn span {
 
 .container .ring-1 {
     position: absolute;
-    /* 120% of the parent size */
-    width: 120%;
-    height: 120%;
-    /* -10% offset centers a 120% object perfectly */
-    top: -10%;
-    left: -10%;
+    width: 105%;
+    height: 105%;
+    top: -3%;
+    left: -3%;
     
     border-radius: 50%;
     border: 2px dashed var(--primary);
@@ -417,12 +419,10 @@ nav .togglebtn span {
 
 .container .ring-2 {
     position: absolute;
-    /* 110% of the parent size */
-    width: 110%;
-    height: 110%;
-    /* -5% offset centers a 110% object perfectly */
-    top: -5%;
-    left: -5%;
+    width: 102%;
+    height: 102%;
+    top: -1%;
+    left: -1%;
     
     border-radius: 50%;
     border: 1px solid var(--secondary);
@@ -1564,7 +1564,7 @@ body::before{
 @media (max-width:768px){
  .hero-text h1{ font-size: 36px;}
  .hero-text h2 span{ font-size: 24px;}
- .hero-pic{ width:260px; height:260px;}
+ .hero-pic{ width:220px; height:220px;}
  .container{ padding-top:4rem;}
 }
 
@@ -1591,13 +1591,13 @@ body::before{
     }
 
     .container .hero-pic {
-        width: 400px;
-        height: 400px;
+        width: 380px;
+        height: 380px;
     }
 
     .container .hero-bg {
-        width: 400px;
-        height: 400px;
+        width: 380px;
+        height: 380px;
     }
 
     .hero-text h1 {
@@ -1650,14 +1650,14 @@ body::before{
     }
 
     .container .hero-pic {
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        height: 280px;
         margin-bottom: 30px;
     }
 
     .container .hero-bg {
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        height: 280px;
     }
 
     .hero-text {
@@ -1920,8 +1920,8 @@ body::before{
 
     .container .hero-pic,
     .container .hero-bg {
-        width: 350px;
-        height: 350px;
+        width: 330px;
+        height: 330px;
     }
 
     .hero-text h1 {
@@ -2040,8 +2040,8 @@ body::before{
 
     .container .hero-pic,
     .container .hero-bg {
-        width: 400px;
-        height: 400px;
+        width: 380px;
+        height: 380px;
     }
 
     .hero-text h1 {
