@@ -1187,7 +1187,8 @@ body.light-mode .git-btn {
 }
 
 body.light-mode .git-btn:hover {
-    color: #fff;
+    color: #ffffff;
+    background: #ff8c3a;
 }
 
 .git-btn i{
@@ -1200,7 +1201,7 @@ body.light-mode .git-btn:hover {
 }
 
 body.light-mode .git-btn:hover i{
-    color: #fff;
+    color: #ffffff;
 }
 
 .btn:hover {
