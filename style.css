@@ -717,7 +717,7 @@ body.light-mode .hero-pic img {
         /* --- TIMELINE STYLES (Education & Experience) --- */
         .timeline-item {
             position: relative;
-            padding-left: 30px;
+            padding-left: 15px;
             margin-bottom: 25px;
             border-left: 2px solid #333;
             display: flex;             
