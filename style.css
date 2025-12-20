@@ -1136,12 +1136,18 @@ body.light-mode .card-body p {
 }
 
 /* BUTTON */
+
+.button-group {
+  display: flex;       
+  align-items: center; 
+}
+
 .git-btn {
     display: flex;            
     margin: 15px auto;        
     justify-content: center;  
     
-    max-width: 25%;
+    max-width: 40%;
     align-items: center;     
     padding: 10px 20px;
     color: var(--accent-color);
@@ -1193,6 +1199,7 @@ body.light-mode .git-btn:hover {
 
 .git-btn i{
     color: var(--accent-color);
+    margin-left: 8px;
 }
 
 .git-btn:hover i{
