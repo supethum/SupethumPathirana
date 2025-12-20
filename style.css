@@ -1591,8 +1591,8 @@ body::before{
     }
 
     .container .hero-pic, .container .hero-bg {
-        width: 330px;
-        height: 330px;
+        width: 320px;
+        height: 320px;
     }
 
     .hero-text h1 {
@@ -1645,14 +1645,14 @@ body::before{
     }
 
     .container .hero-pic {
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
         margin-bottom: 30px;
     }
 
     .container .hero-bg {
-        width: 220px;
-        height: 220px;
+        width: 200px;
+        height: 200px;
     }
 
     .hero-text {
@@ -1915,8 +1915,8 @@ body::before{
 
     .container .hero-pic,
     .container .hero-bg {
-        width: 280px;
-        height: 280px;
+        width: 180px;
+        height: 180px;
     }
 
     .hero-text h1 {
