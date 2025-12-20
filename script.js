@@ -172,41 +172,43 @@ const observer = new IntersectionObserver((entries) => {
 const animatedElements = document.querySelectorAll('[data-animate]');
 animatedElements.forEach(el => observer.observe(el));
 
-//project card
-const filterButtons = document.querySelectorAll(".filter-btn");
-const cards = document.querySelectorAll(".card");
+// --------- UPDATED FILTER LOGIC -----------
 
-filterButtons.forEach(btn => {
+// 1. Projects Filter Logic (Only selects buttons inside #Projects)
+const projectFilterButtons = document.querySelectorAll("#Projects .filter-btn");
+const projectCards = document.querySelectorAll(".card");
+
+projectFilterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-
-        filterButtons.forEach(b => b.classList.remove("active"));
+        // Remove active class from only project buttons
+        projectFilterButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
         const category = btn.getAttribute("data-filter");
 
-        cards.forEach(card => {
+        projectCards.forEach(card => {
             if (category === "all" || card.getAttribute("data-category") === category) {
                 card.style.display = "block";
             } else {
                 card.style.display = "none";
             }
         });
-
     });
 });
 
-// Skill filter
-const skillFilterButtons = document.querySelectorAll(".Skills .filter-btn");
-const skills = document.querySelectorAll(".skill");
+// 2. Skill Filter Logic (Only selects buttons inside #Skills)
+const skillFilterButtons = document.querySelectorAll("#Skills .filter-btn");
+const skillItems = document.querySelectorAll(".skill");
 
 skillFilterButtons.forEach(btn => {
     btn.addEventListener("click", () => {
+        // Remove active class from only skill buttons
         skillFilterButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
 
         const category = btn.getAttribute("data-filter");
 
-        skills.forEach(skill => {
+        skillItems.forEach(skill => {
             if (category === "all" || skill.getAttribute("data-category") === category) {
                 skill.style.display = "block";
             } else {
@@ -215,6 +217,9 @@ skillFilterButtons.forEach(btn => {
         });
     });
 });
+
+// --------- END UPDATED FILTER LOGIC -----------
+
 
 // Menu toggle & Typed intro & Canvas particle animation
 document.addEventListener('DOMContentLoaded', () => {
