@@ -436,12 +436,12 @@ nav .togglebtn span {
 }
 
 @keyframes spin-right {
-            100% { transform: rotate(360deg); }
-        }
+    100% { transform: rotate(360deg); }
+}
 
-        @keyframes spin-left {
-            100% { transform: rotate(-360deg); }
-        }
+@keyframes spin-left {
+    100% { transform: rotate(-360deg); }
+}
 
 .hero-pic img{
     width: 100%;
@@ -1564,7 +1564,6 @@ body::before{
 @media (max-width:768px){
  .hero-text h1{ font-size: 36px;}
  .hero-text h2 span{ font-size: 24px;}
- .hero-pic{ width:180px; height:180px;}
  .container{ padding-top:4rem;}
 }
 
@@ -1590,9 +1589,11 @@ body::before{
         gap: 40px;
     }
 
-    .container .hero-pic, .container .hero-bg {
-        width: 320px;
-        height: 320px;
+    /* FIX: Hero Image & Rings - Tablet */
+    .container .hero-pic, 
+    .container .hero-bg {
+        width: 380px;
+        height: 380px;
     }
 
     .hero-text h1 {
@@ -1644,15 +1645,14 @@ body::before{
         text-align: center;
     }
 
-    .container .hero-pic {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 30px;
-    }
-
+    /* FIX: Hero Image & Rings - Mobile */
+    .container .hero-pic,
     .container .hero-bg {
-        width: 200px;
-        height: 200px;
+        width: 280px;
+        height: 280px;
+        margin-bottom: 40px; /* Space for rings */
+        margin-left: auto;   /* Center element */
+        margin-right: auto;  /* Center element */
     }
 
     .hero-text {
@@ -1913,10 +1913,14 @@ body::before{
         margin-left: 0.5rem;
     }
 
+    /* FIX: Hero Image & Rings - Small Mobile */
     .container .hero-pic,
     .container .hero-bg {
-        width: 180px;
-        height: 180px;
+        width: 220px;
+        height: 220px;
+        margin-bottom: 30px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hero-text h1 {
@@ -2035,8 +2039,10 @@ body::before{
 
     .container .hero-pic,
     .container .hero-bg {
-        width: 320px;
-        height: 320px;
+        width: 220px;
+        height: 220px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .hero-text h1 {
@@ -2046,6 +2052,8 @@ body::before{
     .hero-text h2 span {
         font-size: 20px;
     }
+}
+
 /*print style*/
 @media print {
     .menu-toggle,
@@ -2067,4 +2075,4 @@ body::before{
     .main-content h1 {
         color: black;
     }
-} }
+}
