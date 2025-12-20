@@ -633,8 +633,10 @@ body.light-mode .hero-pic img {
         flex-direction: column;
         padding-top:2rem
     }
+    
+    /* MODIFIED: Reduced padding for mobile view to decrease gap */
     .hero-text{
-        padding:40px 0px;
+        padding: 0px 0px 40px 0px; 
     }
 }
 
@@ -1589,7 +1591,6 @@ body::before{
         gap: 40px;
     }
 
-    /* FIX: Hero Image & Rings - Tablet */
     .container .hero-pic, 
     .container .hero-bg {
         width: 380px;
@@ -1645,14 +1646,14 @@ body::before{
         text-align: center;
     }
 
-    /* FIX: Hero Image & Rings - Mobile */
+    /* FIX: Reduced margin-bottom to close the gap */
     .container .hero-pic,
     .container .hero-bg {
-        width: 300px;
-        height: 300px;
-        margin-bottom: 20px; /* Space for rings */
-        margin-left: auto;   /* Center element */
-        margin-right: auto;  /* Center element */
+        width: 280px;
+        height: 280px;
+        margin-bottom: 20px; /* Reduced from 40px */
+        margin-left: auto;   
+        margin-right: auto;  
     }
 
     .hero-text {
@@ -1913,12 +1914,12 @@ body::before{
         margin-left: 0.5rem;
     }
 
-    /* FIX: Hero Image & Rings - Small Mobile */
+    /* FIX: Reduced margin-bottom further for small screens */
     .container .hero-pic,
     .container .hero-bg {
         width: 220px;
         height: 220px;
-        margin-bottom: 30px;
+        margin-bottom: 15px; /* Reduced from 30px */
         margin-left: auto;
         margin-right: auto;
     }
@@ -1928,7 +1929,7 @@ body::before{
     }
 
     .hero-text h2 span {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .hero-text h3 {
@@ -2050,7 +2051,7 @@ body::before{
     }
 
     .hero-text h2 span {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 
