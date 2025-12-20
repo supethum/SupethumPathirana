@@ -1648,9 +1648,9 @@ body::before{
     /* FIX: Hero Image & Rings - Mobile */
     .container .hero-pic,
     .container .hero-bg {
-        width: 280px;
-        height: 280px;
-        margin-bottom: 40px; /* Space for rings */
+        width: 300px;
+        height: 300px;
+        margin-bottom: 20px; /* Space for rings */
         margin-left: auto;   /* Center element */
         margin-right: auto;  /* Center element */
     }
