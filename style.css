@@ -435,6 +435,14 @@ nav .togglebtn span {
     animation: spin-left 8s linear infinite;
 }
 
+/* --- MOBILE ADJUSTMENT --- */
+@media (max-width: 600px) {
+    /* Optional: Make the glow/border thinner on mobile so it doesn't overlap text */
+    .container .hero-bg {
+        max-width: 60vw; /* Smaller circle on phones */
+    }
+}
+
 @keyframes spin-right {
             100% { transform: rotate(360deg); }
         }
