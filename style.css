@@ -1564,7 +1564,7 @@ body::before{
 @media (max-width:768px){
  .hero-text h1{ font-size: 36px;}
  .hero-text h2 span{ font-size: 24px;}
- .hero-pic{ width:200px; height:200px;}
+ .hero-pic{ width:180px; height:180px;}
  .container{ padding-top:4rem;}
 }
 
@@ -1590,14 +1590,9 @@ body::before{
         gap: 40px;
     }
 
-    .container .hero-pic {
-        width: 380px;
-        height: 380px;
-    }
-
-    .container .hero-bg {
-        width: 350px;
-        height: 350px;
+    .container .hero-pic, .container .hero-bg {
+        width: 330px;
+        height: 330px;
     }
 
     .hero-text h1 {
@@ -1650,14 +1645,14 @@ body::before{
     }
 
     .container .hero-pic {
-        width: 250px;
-        height: 250px;
+        width: 230px;
+        height: 230px;
         margin-bottom: 30px;
     }
 
     .container .hero-bg {
-        width: 250px;
-        height: 250px;
+        width: 230px;
+        height: 230px;
     }
 
     .hero-text {
@@ -1920,8 +1915,8 @@ body::before{
 
     .container .hero-pic,
     .container .hero-bg {
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        height: 280px;
     }
 
     .hero-text h1 {
@@ -2040,8 +2035,8 @@ body::before{
 
     .container .hero-pic,
     .container .hero-bg {
-        width: 350px;
-        height: 350px;
+        width: 330px;
+        height: 330px;
     }
 
     .hero-text h1 {
