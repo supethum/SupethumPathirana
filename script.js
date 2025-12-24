@@ -502,7 +502,7 @@ function initContactForm() {
             .then(() => {
                 emailjs.sendForm(serviceID, userTemplate, this);
 
-                showFormMessage('Message sent successfully! I will reply soon.');
+                showFormMessage('Message sent. I\'ll get back to you soon.');
                 contactForm.reset();
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnText;
