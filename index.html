@@ -55,11 +55,7 @@
                             <h2><span class="input">Full Stack Developer</span></h2>
                         </div>
 
-                        <div class="social">
-                            <a href="https://www.linkedin.com/in/supethum-pathirana-0b6b77333/"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="https://github.com/supethum"><i class="fa-brands fa-github"></i></a>
-                            <a href="mailto:supethum.dev@gmail.com?subject=Inquiry from Portfolio"><i class="fa-solid fa-envelope"></i></a>
-                        </div>
+                        <div class="social" id="hero-socials"></div>
 
                         <div class="btn-group">
                             <a href="#Contact me" class="btn2">Let's Talk <i class="fa-solid fa-arrow-right"></i></i></i></a>
@@ -83,112 +79,41 @@
                 </div>
             </section>
             <div class="main-content">
+                
                 <section id="About me" class="About me">
                     <h1>About me</h1><br><br>
-                    <p>I am an enthusiastic <b style="color:var(--accent-color);">undergraduate Software Engineering</b> student at SLIIT with a strong focus on crafting meaningful digital experiences. My work spans across <b style="color:var(--accent-color);">UI/UX design, Full Stack Development and mobile app development</b>, allowing me to combine creative thinking with technical precision.<br><br>I’m passionate about understanding real user needs and transforming them into clean, intuitive, and functional products. Whether it’s designing a modern interface, developing responsive web applications, or building smooth mobile experiences, I aim to deliver solutions that are both visually appealing and technically robust.<br><br>I enjoy exploring new technologies, staying updated with industry trends, and continuously improving my craft. With a detail-oriented mindset and a drive for excellence, I’m committed to producing high-quality work that reflects professionalism, clarity, and innovation.<br><br>My goal is to grow as a versatile developer and designer while contributing to impact digital solutions that make a difference.</p><br>
+                    
+                    <p id="about-bio"></p><br>
 
                     <div class="container2">
                         <div class="column-left">
                             
                             <div class="card2" data-animate>
                                 <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
-                                
-                                <div class="timeline-item">
-                                    <div class="role">Bachelor's Degree in Software Engineering (undergraduate) </div>
-                                    <div>Sri Lanka Institute of Information Technology</div>
-                                    <div class="date">2023 - Present</div>
-                                </div>
+                                <div id="education-list"></div>
                             </div>
 
-                            <div class="card2" data-animate style="transition-delay: 100ms;"> <h2><i class="fa-solid fa-briefcase"></i> Experience</h2>
-                                
-                                <div class="timeline-item">
-                                    <div class="timeline-dot"></div>
-                                    <div class="role">Full Stack Developer</div>
-                                    <div class="date">2025 - Present</div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-dot"></div>
-                                    <div class="role">UI UX designer</div>
-                                    <div class="date">2025 - Present</div>
-                                </div>
-
-                                <div class="timeline-item">
-                                    <div class="timeline-dot"></div>
-                                    <div class="role">Mobile App Developer</div>
-                                    <div class="date">2025 - Present</div>
-                                </div>
+                            <div class="card2" data-animate style="transition-delay: 100ms;"> 
+                                <h2><i class="fa-solid fa-briefcase"></i> Experience</h2>
+                                <div id="experience-list"></div>
                             </div>
 
                         </div>
 
                         <div class="column-right">
-                            
                             <div class="card2" data-animate style="transition-delay: 200ms;">
                                 <h2><i class="fa-solid fa-file-lines"></i> Key Skills</h2>
-                                
-                                <div class="skills-grid">
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-react"></i> React
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-node-js"></i> Node.js
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-solid fa-leaf"></i> MongoDB
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-solid fa-database"></i> MySQL
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-solid fa-wind"></i> TailwindCSS
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-figma"></i> Figma
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-git-alt"></i> Git
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-js"></i> JavaScript
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-php"></i> PHP
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-html5"></i> HTML
-                                    </div>
-
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-css3-alt"></i> CSS
-                                    </div>
-                                    
-                                    <div class="skill-tag">
-                                        <i class="fa-brands fa-android"></i> Kotlin
-                                    </div>
-
-                                </div>
+                                <div class="skills-grid" id="key-skills-list"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="btn-group">
-                        <button id="cvBtn" class="btn active">Download CV <i class="fa-solid fa-download"></i></button>
-                        <a class="btn2" href="resources/cv.pdf" target="_blank" rel="noopener noreferrer">View Online <i class="fa-solid fa-up-right-from-square"></i></a>
+                        <button id="cvBtn2" class="btn active">Download CV <i class="fa-solid fa-download"></i></button>
+                        <a class="btn2" id="viewCvBtn" href="#" target="_blank" rel="noopener noreferrer">View Online <i class="fa-solid fa-up-right-from-square"></i></a>
                     </div>
                 </section>
 
-            
                 <section id="Skills" class="Skills">
                     <h1>Skills</h1><br> 
                     <section class="filter-section">
@@ -199,120 +124,8 @@
                         <button class="filter-btn" data-filter="database">Database</button>
                         <button class="filter-btn" data-filter="tools">Tools</button>
                     </section>
-                    <div class="skills">
-                        
-                        <div class="skill" data-category="frontend">
-                            <div class="circle" data-percent="85">
-                            <i class="fab fa-html5 fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">HTML</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="frontend">
-                            <div class="circle" data-percent="80">
-                            <i class="fab fa-css3-alt fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">CSS</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="frontend">
-                            <div class="circle" data-percent="60">
-                            <i class="fab fa-js fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">JavaScript</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="backend">
-                            <div class="circle" data-percent="55">
-                            <i class="fab fa-node-js fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">Node Js</div>
-                            </div>
-                        </div>
-                        
-
-                        <div class="skill" data-category="mobile">
-                            <div class="circle" data-percent="75">
-                            <i class="fab fa-brands fa-android fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">Kotlin</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="frontend">
-                            <div class="circle" data-percent="70">
-                            <i class="fab fa-react fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">React</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="frontend">
-                            <div class="circle" data-percent="75">
-                            <i class="fas fa-wind fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">Tailwind CSS</div>
-                            </div>
-                        </div>
-                        
-
-                        <div class="skill" data-category="tools">
-                            <div class="circle" data-percent="80">
-                            <i class="fab fa-git-alt fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">Git</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="tools">
-                            <div class="circle" data-percent="80">
-                            <i class="fas fa-code fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">Vs Code</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="tools">
-                            <div class="circle" data-percent="85" aria-hidden="true">
-                            <i class="fab fa-figma fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">Figma</div>
-                            </div>
-                        </div>
-
-                        <div class="skill" data-category="tools">
-                            <div class="circle" data-percent="75" aria-hidden="true">
-                            <i class="fa-solid fa-robot fa-2x icon"></i>
-                            </div>
-                            <div class="meta">
-                            <div class="value">0%</div>
-                            <div class="label">Ai prompt</div>
-                            </div>
-                        </div>
-                    </div>
+                    
+                    <div class="skills" id="skills-container"></div>
                 </section>
 
                 <section id="Projects" class="Projects">
@@ -325,45 +138,7 @@
                         <button class="filter-btn" data-filter="extension">Extension</button>
                     </section>
 
-                    <section class="projects-grid">
-
-                        <div class="card" data-category="uiux">
-                            <img src="resources/vegbulk.png" class="card-img">
-                            <div class="card-body">
-                                <h4 class="tech">Figma</h4>
-                                <p>VegBulk is a mobile marketplace that connects vegetable vendors directly with farmers for hassle-free bulk ordering of fresh produce.</p>
-                                <div class="button-group">
-                                    <!--<a href="#" class="git-btn"> Git <i class="fa-brands fa-github"></i></a>-->
-                                    <a href="https://www.figma.com/proto/qhZ8KMZFV3iiW8Xwqfyf5B/Untitled?node-id=59-557&p=f&t=LOn7WSenjtVnWkKv-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=13%3A514" class="git-btn"> Live Demo <i class="fa-solid fa-up-right-from-square"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="card" data-category="extension">
-                            <img src="resources/lotuspond.png" class="card-img">
-                            <div class="card-body">
-                                <h4 class="tech">HTML | CSS | JS</h4>
-                                <p>LotusPond replaces your New Tab with a calming, animated ecosystem that syncs with the time of day. It keeps you organized with a clean clock, live weather updates, and your favorite shortcuts.</p>
-                                <div class="button-group">
-                                    <a href="https://github.com/supethum/LotusPond.git" class="git-btn"> Git <i class="fa-brands fa-github"></i></a>
-                                    <a href="https://drive.google.com/file/d/19l8x7G17t-O7SyYz8dEkMybWIpORGKdY/view?usp=sharing" class="git-btn"> Watch <i class="fa-solid fa-circle-play"></i></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card" data-category="app">
-                            <img src="resources/balanceme.png" class="card-img">
-                            <div class="card-body">
-                                <h4 class="tech">Kotlin</h4>
-                                <p>"BalanceMe" is a personal wellness application designed to help you track and improve various aspects of your daily life.</p>
-                                <div class="button-group">
-                                    <a href="https://github.com/supethum/BalanceMe.git" class="git-btn"> Git <i class="fa-brands fa-github"></i></a>
-                                    <a href="https://drive.google.com/file/d/1HlSnn5E4AKAQlbZPhaiAJJwTT74peO18/view?usp=drive_link" class="git-btn"> Watch <i class="fa-solid fa-circle-play"></i></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </section>
+                    <section class="projects-grid" id="projects-grid"></section>
                 </section>
 
                 <section id="Contact me" class="Contact me">
@@ -426,7 +201,7 @@
      </div>
 
       <footer class="footer">
-                <h2 class="footer-title">Supethum Pathirana</h2>
+        <h2 class="footer-title">Supethum Pathirana</h2>
 
         <ul class="footer-menu">
             <li><a href="#Home">Home</a></li>
@@ -436,11 +211,7 @@
             <li><a href="#Contact me">Contact me</a></li>
         </ul>
 
-        <div class="footer-socials">
-            <a href="https://www.linkedin.com/in/supethum-pathirana-0b6b77333/"><i class="fa-brands fa-linkedin"></i></a>
-            <a href="https://github.com/supethum?tab=projects"><i class="fa-brands fa-github"></i></a>
-            <a href="mailto:supethum.dev@gmail.com?subject=Inquiry from Portfolio"><i class="fa-solid fa-envelope"></i></a>
-        </div>
+        <div class="footer-socials" id="footer-socials"></div>
 
         <hr class="footer-line">
 

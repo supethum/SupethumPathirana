@@ -1,0 +1,28 @@
+{
+    "cv": {
+        "fileUrl": "resources/cv.pdf",
+        "downloadFileName": "Supethum_Pathirana_CV.pdf"
+    },
+    "socials": [
+        {
+            "name": "LinkedIn",
+            "url": "https://www.linkedin.com/in/supethum-pathirana-0b6b77333/",
+            "iconClass": "fa-brands fa-linkedin"
+        },
+        {
+            "name": "GitHub",
+            "url": "https://github.com/supethum",
+            "iconClass": "fa-brands fa-github"
+        },
+        {
+            "name": "Email",
+            "url": "mailto:supethum.dev@gmail.com?subject=Inquiry from Portfolio",
+            "iconClass": "fa-solid fa-envelope"
+        },
+        {
+            "name": "Facebook",
+            "url": "https://facebook.com/your-profile-url",
+            "iconClass": "fa-brands fa-facebook"
+        }
+    ]
+}

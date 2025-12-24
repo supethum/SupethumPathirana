@@ -1,0 +1,13 @@
+[
+    { "category": "frontend", "percent": 85, "icon": "fab fa-html5", "label": "HTML" },
+    { "category": "frontend", "percent": 80, "icon": "fab fa-css3-alt", "label": "CSS" },
+    { "category": "frontend", "percent": 60, "icon": "fab fa-js", "label": "JavaScript" },
+    { "category": "backend", "percent": 55, "icon": "fab fa-node-js", "label": "Node Js" },
+    { "category": "mobile", "percent": 75, "icon": "fab fa-brands fa-android", "label": "Kotlin" },
+    { "category": "frontend", "percent": 70, "icon": "fab fa-react", "label": "React" },
+    { "category": "frontend", "percent": 75, "icon": "fas fa-wind", "label": "Tailwind CSS" },
+    { "category": "tools", "percent": 80, "icon": "fab fa-git-alt", "label": "Git" },
+    { "category": "tools", "percent": 80, "icon": "fas fa-code", "label": "Vs Code" },
+    { "category": "tools", "percent": 85, "icon": "fab fa-figma", "label": "Figma" },
+    { "category": "tools", "percent": 75, "icon": "fa-solid fa-robot", "label": "Ai prompt" }
+]

@@ -1,50 +1,187 @@
-//progress bar
-document.addEventListener('scroll', updateProgressBar);
+// Store config data globally
+let siteConfig = {};
 
-function updateProgressBar() {
-    const scrollTop = document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolledPercentage = Math.max(0, Math.min(100, (scrollTop / scrollHeight) * 100));
-    const progressBar = document.getElementById('progressBar');
-    
-    if (progressBar && scrollHeight > 0) {
-        progressBar.style.width = scrolledPercentage + '%';
-    } else if (progressBar) {
-        progressBar.style.width = '100%'; 
-    }
+// Function to load all JSON data
+async function loadAllData() {
+  try {
+    // 1. Fetch Configuration (CV & Socials)
+    const configResponse = await fetch('config.json');
+    siteConfig = await configResponse.json();
+    renderConfig(siteConfig);
+
+    // 2. Fetch Projects
+    const projectsResponse = await fetch('projects.json');
+    const projectsData = await projectsResponse.json();
+    renderProjects(projectsData);
+
+    // 3. Fetch Skills
+    const skillsResponse = await fetch('skills.json');
+    const skillsData = await skillsResponse.json();
+    renderSkills(skillsData);
+
+    // 4. Fetch About
+    const aboutResponse = await fetch('about.json');
+    const aboutData = await aboutResponse.json();
+    renderAbout(aboutData);
+
+    // 5. Initialize animations & filters
+    initAnimations();
+    initFilters();
+
+  } catch (error) {
+    console.error('Error loading JSON data:', error);
+  }
 }
 
-//Scroll smooth
-function scrollToSection(elementId) {
-    const targetElement = document.getElementById(elementId);
-    
-    if (targetElement) {
-        targetElement.scrollIntoView({
-            behavior: 'smooth', 
-            block: 'start'      
-        });
-    }
+// Render Configurations (Socials & CV Buttons)
+function renderConfig(data) {
+  // A. Render Social Links (Hero & Footer)
+  const heroSocials = document.getElementById('hero-socials');
+  const footerSocials = document.getElementById('footer-socials');
+  
+  // Create HTML for social icons
+  const socialHtml = data.socials.map(social => 
+    `<a href="${social.url}" target="_blank" aria-label="${social.name}"><i class="${social.iconClass}"></i></a>`
+  ).join('');
+
+  if(heroSocials) heroSocials.innerHTML = socialHtml;
+  if(footerSocials) footerSocials.innerHTML = socialHtml;
+
+  // B. Update "View Online" CV Button
+  const viewCvBtn = document.getElementById('viewCvBtn');
+  if (viewCvBtn) {
+    viewCvBtn.href = data.cv.fileUrl;
+  }
 }
 
-//cv
-document.getElementById("cvBtn").addEventListener("click", function() {
-    const link = document.createElement("a");
-    // Make sure this path is correct relative to your HTML file
-    link.href = "resources/cv.pdf"; 
-    link.download = "Supethum_Pathirana_CV.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-});
-//Animated skills
-document.addEventListener("DOMContentLoaded", () => {
-  const projectCount = document.querySelectorAll('.projects-grid .card').length;
+// Render Projects
+function renderProjects(projects) {
+  const container = document.getElementById('projects-grid');
+  let html = '';
+
+  projects.forEach(project => {
+    let buttonsHtml = '';
+    if (project.buttons) {
+      buttonsHtml = project.buttons.map(btn => 
+        `<a href="${btn.url}" class="git-btn" target="_blank"> ${btn.text} <i class="${btn.icon}"></i></a>`
+      ).join('');
+    }
+
+    html += `
+      <div class="card" data-category="${project.category}">
+          <img src="${project.image}" class="card-img" alt="${project.tech}">
+          <div class="card-body">
+              <h4 class="tech">${project.tech}</h4>
+              <p>${project.description}</p>
+              <div class="button-group">
+                  ${buttonsHtml}
+              </div>
+          </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+  
   const projectCountEl = document.getElementById('projectCount');
   if (projectCountEl) {
-    projectCountEl.setAttribute('data-target', projectCount);
+    projectCountEl.setAttribute('data-target', projects.length);
   }
+}
 
-  // Counter animation for stats
+// Render Skills
+function renderSkills(skills) {
+  const container = document.getElementById('skills-container');
+  let html = '';
+
+  skills.forEach(skill => {
+    html += `
+      <div class="skill" data-category="${skill.category}">
+          <div class="circle" data-percent="${skill.percent}">
+            <i class="${skill.icon} fa-2x icon"></i>
+          </div>
+          <div class="meta">
+            <div class="value">0%</div>
+            <div class="label">${skill.label}</div>
+          </div>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+}
+
+// Render About Section
+function renderAbout(data) {
+  document.getElementById('about-bio').innerHTML = data.bio;
+
+  const eduContainer = document.getElementById('education-list');
+  eduContainer.innerHTML = data.education.map(item => `
+    <div class="timeline-item">
+        <div class="role">${item.role}</div>
+        <div>${item.place}</div>
+        <div class="date">${item.date}</div>
+    </div>
+  `).join('');
+
+  const expContainer = document.getElementById('experience-list');
+  expContainer.innerHTML = data.experience.map(item => `
+    <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="role">${item.role}</div>
+        <div class="date">${item.date}</div>
+    </div>
+  `).join('');
+
+  const keySkillsContainer = document.getElementById('key-skills-list');
+  keySkillsContainer.innerHTML = data.keySkills.map(skill => `
+    <div class="skill-tag">
+        <i class="${skill.icon}"></i> ${skill.name}
+    </div>
+  `).join('');
+}
+
+// Initialize Filters
+function initFilters() {
+  const projectFilterButtons = document.querySelectorAll("#Projects .filter-btn");
+  const projectCards = document.querySelectorAll(".card");
+
+  projectFilterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+          projectFilterButtons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const category = btn.getAttribute("data-filter");
+          projectCards.forEach(card => {
+              if (category === "all" || card.getAttribute("data-category") === category) {
+                  card.style.display = "block";
+              } else {
+                  card.style.display = "none";
+              }
+          });
+      });
+  });
+
+  const skillFilterButtons = document.querySelectorAll("#Skills .filter-btn");
+  const skillItems = document.querySelectorAll(".skill");
+
+  skillFilterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+          skillFilterButtons.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const category = btn.getAttribute("data-filter");
+          skillItems.forEach(skill => {
+              if (category === "all" || skill.getAttribute("data-category") === category) {
+                  skill.style.display = "block";
+              } else {
+                  skill.style.display = "none";
+              }
+          });
+      });
+  });
+}
+
+// Initialize Animations
+function initAnimations() {
   const statElements = document.querySelectorAll('[data-target]');
   const statsObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -54,12 +191,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.5 });
-
   statElements.forEach(el => statsObserver.observe(el));
 
   const skills = Array.from(document.querySelectorAll(".skill"));
-
-  const observer = new IntersectionObserver(entries => {
+  const skillsObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const skillEl = entry.target;
@@ -69,46 +204,45 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     });
-  }, {
-    threshold: 0.55
-  });
+  }, { threshold: 0.55 });
+  skills.forEach(s => skillsObserver.observe(s));
 
-  skills.forEach(s => observer.observe(s));
-});
+  const animatedElements = document.querySelectorAll('[data-animate]');
+  const cardObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible'); 
+        }
+    });
+  }, { threshold: 0.1 });
+  animatedElements.forEach(el => cardObserver.observe(el));
+}
 
-
+// Animation Helpers
 function animateSkill(skillEl) {
   const circle = skillEl.querySelector(".circle");
   const valueEl = skillEl.querySelector(".value");
-
   const percent = Math.max(0, Math.min(100, Number(circle.getAttribute("data-percent") || 0)));
-
   const duration = 1200 + Math.random() * 600;
   const start = performance.now();
   const startPercent = 0; 
 
-  // Add entrance animation
   skillEl.style.opacity = '0';
   skillEl.style.transform = 'scale(0.8) translateY(20px)';
   
   function step(now) {
     const elapsed = now - start;
     const t = Math.min(1, elapsed / duration);
-
     const eased = 1 - Math.pow(1 - t, 3);
-
     const current = startPercent + (percent - startPercent) * eased;
-
     const angle = current * 3.6;
+    
     circle.style.setProperty("--angle", angle + "deg");
-
     valueEl.textContent = Math.round(current) + "%";
     
-    // Animate entrance: opacity and scale
     skillEl.style.opacity = eased;
     skillEl.style.transform = `scale(${0.8 + eased * 0.2}) translateY(${20 - eased * 20}px)`;
     
-    // Add glow effect during animation
     if (eased > 0.3) {
       circle.style.boxShadow = `
         inset 0 4px 8px rgba(255, 255, 255, 0.2),
@@ -128,11 +262,9 @@ function animateSkill(skillEl) {
       circle.style.boxShadow = ''; 
     }
   }
-
   requestAnimationFrame(step);
 }
 
-// Counter animation function
 function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-target'), 10);
   const duration = 1500;
@@ -141,89 +273,51 @@ function animateCounter(element) {
   function step(now) {
     const elapsed = now - start;
     const progress = Math.min(1, elapsed / duration);
-    
-    // Easing function for smooth animation
     const eased = 1 - Math.pow(1 - progress, 3);
     const current = Math.floor(eased * target);
-    
     element.textContent = current + '+';
-    
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    } else {
-      element.textContent = target + '+';
-    }
+    if (progress < 1) requestAnimationFrame(step);
+    else element.textContent = target + '+';
   }
-  
   requestAnimationFrame(step);
 }
 
-//education and experience tabs
-const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible'); 
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-const animatedElements = document.querySelectorAll('[data-animate]');
-animatedElements.forEach(el => observer.observe(el));
-
-// --------- UPDATED FILTER LOGIC -----------
-
-// 1. Projects Filter Logic (Only selects buttons inside #Projects)
-const projectFilterButtons = document.querySelectorAll("#Projects .filter-btn");
-const projectCards = document.querySelectorAll(".card");
-
-projectFilterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        // Remove active class from only project buttons
-        projectFilterButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        const category = btn.getAttribute("data-filter");
-
-        projectCards.forEach(card => {
-            if (category === "all" || card.getAttribute("data-category") === category) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
-        });
-    });
+// UI Interactions
+document.addEventListener("DOMContentLoaded", () => {
+  loadAllData();
+  setupUIInteractions();
 });
 
-// 2. Skill Filter Logic (Only selects buttons inside #Skills)
-const skillFilterButtons = document.querySelectorAll("#Skills .filter-btn");
-const skillItems = document.querySelectorAll(".skill");
+function setupUIInteractions() {
+  // Progress Bar
+  document.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolledPercentage = Math.max(0, Math.min(100, (scrollTop / scrollHeight) * 100));
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) progressBar.style.width = scrollHeight > 0 ? scrolledPercentage + '%' : '100%';
+  });
 
-skillFilterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        // Remove active class from only skill buttons
-        skillFilterButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+  // Dynamic CV Download Function
+  function downloadCV() {
+    if (!siteConfig.cv) {
+        console.error("Config not loaded yet");
+        return;
+    }
+    const link = document.createElement("a");
+    link.href = siteConfig.cv.fileUrl; 
+    link.download = siteConfig.cv.downloadFileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
+  const cvBtn1 = document.getElementById("cvBtn");
+  const cvBtn2 = document.getElementById("cvBtn2");
+  if(cvBtn1) cvBtn1.addEventListener("click", downloadCV);
+  if(cvBtn2) cvBtn2.addEventListener("click", downloadCV);
 
-        const category = btn.getAttribute("data-filter");
-
-        skillItems.forEach(skill => {
-            if (category === "all" || skill.getAttribute("data-category") === category) {
-                skill.style.display = "block";
-            } else {
-                skill.style.display = "none";
-            }
-        });
-    });
-});
-
-// --------- END UPDATED FILTER LOGIC -----------
-
-
-// Menu toggle & Typed intro & Canvas particle animation
-document.addEventListener('DOMContentLoaded', () => {
-  // Mobile menu toggle
+  // Mobile menu
   const togglebtn = document.querySelector('.togglebtn');
   const nav = document.querySelector('.navlinks');
   const navLinksItems = document.querySelectorAll('.navlinks li a'); 
@@ -233,8 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
       this.classList.toggle('click');
       nav.classList.toggle('open');
     });
-
-    // Close menu when a link is clicked
     navLinksItems.forEach(link => {
         link.addEventListener('click', () => {
             if (nav.classList.contains('open')) {
@@ -245,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Typed.js intro animation
+  // Typed.js
   if (window.Typed) {
     new Typed('.input', {
       strings: ['Frontend Developer', 'UI/UX Designer', 'App Developer'],
@@ -254,21 +346,17 @@ document.addEventListener('DOMContentLoaded', () => {
       loop: true
     });
   }
-  
-  // --- THEME TOGGLE LOGIC ---
+
+  // Theme Toggle
   const themeSwitch = document.getElementById('themeSwitch');
   const icon = themeSwitch.querySelector('i');
-  
-  // Check for saved preference
   if (localStorage.getItem('theme') === 'light') {
     document.body.classList.add('light-mode');
     icon.classList.remove('fa-sun');
     icon.classList.add('fa-moon');
   }
-
   themeSwitch.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
-    
     if (document.body.classList.contains('light-mode')) {
         icon.classList.remove('fa-sun');
         icon.classList.add('fa-moon');
@@ -280,165 +368,151 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  initCanvas();
+  initContactForm();
+}
 
-});
+// Background Canvas
+function initCanvas() {
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particlesArray;
 
-// --- BACKGROUND PARTICLE ANIMATION ---
-const canvas = document.getElementById('bg-canvas');
-const ctx = canvas.getContext('2d');
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+    });
 
-let particlesArray;
-
-// Resize canvas
-window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    initParticles();
-});
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-class Particle {
-    constructor(x, y, directionX, directionY, size, color) {
-        this.x = x;
-        this.y = y;
-        this.directionX = directionX;
-        this.directionY = directionY;
-        this.size = size;
-        this.color = color;
-    }
-    // Method to draw individual particle
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-        ctx.fillStyle = '#e26403ff'; 
-        ctx.fill();
-    }
-    update() {
-        if (this.x > canvas.width || this.x < 0) {
-            this.directionX = -this.directionX;
+    class Particle {
+        constructor(x, y, directionX, directionY, size, color) {
+            this.x = x; this.y = y;
+            this.directionX = directionX; this.directionY = directionY;
+            this.size = size; this.color = color;
         }
-        if (this.y > canvas.height || this.y < 0) {
-            this.directionY = -this.directionY;
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+            ctx.fillStyle = '#e26403ff'; 
+            ctx.fill();
         }
-        this.x += this.directionX;
-        this.y += this.directionY;
-        this.draw();
+        update() {
+            if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
+            if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
+            this.x += this.directionX;
+            this.y += this.directionY;
+            this.draw();
+        }
     }
-}
 
-// Create particle pool
-function initParticles() {
-    particlesArray = [];
-    let numberOfParticles = (canvas.height * canvas.width) / 9000;
-    for (let i = 0; i < numberOfParticles; i++) {
-        let size = (Math.random() * 2) + 1;
-        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-        let directionX = (Math.random() * 0.5) - 0.25;
-        let directionY = (Math.random() * 0.5) - 0.25;
-        let color = '#FD6F00';
-
-        particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+    function initParticles() {
+        particlesArray = [];
+        let numberOfParticles = (canvas.height * canvas.width) / 9000;
+        for (let i = 0; i < numberOfParticles; i++) {
+            let size = (Math.random() * 2) + 1;
+            let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+            let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+            let directionX = (Math.random() * 0.5) - 0.25;
+            let directionY = (Math.random() * 0.5) - 0.25;
+            let color = '#FD6F00';
+            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+        }
     }
-}
 
-// Check if particles are close enough to draw a line between them
-function connectParticles() {
-    let opacityValue = 1;
-    for (let a = 0; a < particlesArray.length; a++) {
-        for (let b = a; b < particlesArray.length; b++) {
-            let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-                + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-            if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                opacityValue = 1 - (distance / 20000);
-                ctx.strokeStyle = 'rgba(253, 111, 0,' + opacityValue * 0.2 + ')';
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                ctx.stroke();
+    function connectParticles() {
+        let opacityValue = 1;
+        for (let a = 0; a < particlesArray.length; a++) {
+            for (let b = a; b < particlesArray.length; b++) {
+                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
+                    + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                    opacityValue = 1 - (distance / 20000);
+                    ctx.strokeStyle = 'rgba(253, 111, 0,' + opacityValue * 0.2 + ')';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                    ctx.stroke();
+                }
             }
         }
     }
-}
 
-// Animation loop
-function animateParticles() {
-    requestAnimationFrame(animateParticles);
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-    for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-    }
-    connectParticles();
-}
-
-initParticles();
-animateParticles();
-
-// Contact form: submit via AJAX, show success message and scroll to Home
-(function() {
-  const contactForm = document.querySelector('.contact-form');
-  if (!contactForm) return;
-
-  function showFormMessage(msg) {
-    let el = document.querySelector('.form-success');
-    if (!el) {
-      el = document.createElement('div');
-      el.className = 'form-success';
-      el.style.position = 'fixed';
-      el.style.top = '16px';
-      el.style.left = '50%';
-      el.style.transform = 'translateX(-50%)';
-      el.style.background = 'var(--accent-color)';
-      el.style.color = '#fff';
-      el.style.padding = '10px 16px';
-      el.style.borderRadius = '8px';
-      el.style.zIndex = '11000';
-      el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.35)';
-      document.body.appendChild(el);
-    }
-    el.textContent = msg;
-    el.style.opacity = '1';
-    el.style.transition = 'opacity 0.4s ease';
-    setTimeout(() => { el.style.opacity = '0'; }, 2200);
-    setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 3000);
-  }
-
-  contactForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const submitBtn = contactForm.querySelector('.submit-btn');
-    if (submitBtn) submitBtn.disabled = true;
-
-    const action = contactForm.getAttribute('action') || window.location.href;
-    const method = (contactForm.getAttribute('method') || 'POST').toUpperCase();
-    const formData = new FormData(contactForm);
-
-    try {
-      const res = await fetch(action, {
-        method: method,
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
+    function animateParticles() {
+        requestAnimationFrame(animateParticles);
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
         }
-      });
-
-      if (res.ok) {
-        showFormMessage('Sent successfully — thank you!');
-        contactForm.reset();
-        // scroll to Home section (small delay so message is visible)
-        setTimeout(() => scrollToSection('Home'), 300);
-      } else {
-        // Fallback to normal submit if server didn't accept AJAX
-        contactForm.submit();
-      }
-    } catch (err) {
-      // Network/CORS fallback: submit the form normally
-      contactForm.submit();
-    } finally {
-      if (submitBtn) submitBtn.disabled = false;
+        connectParticles();
     }
-  });
-})();
+
+    initParticles();
+    animateParticles();
+}
+
+// Contact Form
+function initContactForm() {
+    const contactForm = document.querySelector('.contact-form');
+    if (!contactForm) return;
+
+    function showFormMessage(msg) {
+        let el = document.querySelector('.form-success');
+        if (!el) {
+        el = document.createElement('div');
+        el.className = 'form-success';
+        el.style.position = 'fixed';
+        el.style.top = '16px';
+        el.style.left = '50%';
+        el.style.transform = 'translateX(-50%)';
+        el.style.background = 'var(--accent-color)';
+        el.style.color = '#fff';
+        el.style.padding = '10px 16px';
+        el.style.borderRadius = '8px';
+        el.style.zIndex = '11000';
+        el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.35)';
+        document.body.appendChild(el);
+        }
+        el.textContent = msg;
+        el.style.opacity = '1';
+        el.style.transition = 'opacity 0.4s ease';
+        setTimeout(() => { el.style.opacity = '0'; }, 2200);
+        setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 3000);
+    }
+
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        if (submitBtn) submitBtn.disabled = true;
+
+        const action = contactForm.getAttribute('action') || window.location.href;
+        const method = (contactForm.getAttribute('method') || 'POST').toUpperCase();
+        const formData = new FormData(contactForm);
+
+        try {
+        const res = await fetch(action, {
+            method: method,
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+            showFormMessage('Sent successfully — thank you!');
+            contactForm.reset();
+            setTimeout(() => {
+                 const targetElement = document.getElementById('Home');
+                 if(targetElement) targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        } else {
+            contactForm.submit();
+        }
+        } catch (err) {
+            contactForm.submit();
+        } finally {
+            if (submitBtn) submitBtn.disabled = false;
+        }
+    });
+}

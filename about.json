@@ -1,0 +1,38 @@
+{
+    "bio": "I am an enthusiastic <b style=\"color:var(--accent-color);\">undergraduate Software Engineering</b> student at SLIIT with a strong focus on crafting meaningful digital experiences. My work spans across <b style=\"color:var(--accent-color);\">UI/UX design, Full Stack Development and mobile app development</b>, allowing me to combine creative thinking with technical precision.<br><br>I’m passionate about understanding real user needs and transforming them into clean, intuitive, and functional products. Whether it’s designing a modern interface, developing responsive web applications, or building smooth mobile experiences, I aim to deliver solutions that are both visually appealing and technically robust.<br><br>I enjoy exploring new technologies, staying updated with industry trends, and continuously improving my craft. With a detail-oriented mindset and a drive for excellence, I’m committed to producing high-quality work that reflects professionalism, clarity, and innovation.<br><br>My goal is to grow as a versatile developer and designer while contributing to impact digital solutions that make a difference.",
+    "education": [
+        {
+            "role": "Bachelor's Degree in Software Engineering (undergraduate)",
+            "place": "Sri Lanka Institute of Information Technology",
+            "date": "2023 - Present"
+        }
+    ],
+    "experience": [
+        {
+            "role": "Full Stack Developer",
+            "date": "2025 - Present"
+        },
+        {
+            "role": "UI UX designer",
+            "date": "2025 - Present"
+        },
+        {
+            "role": "Mobile App Developer",
+            "date": "2025 - Present"
+        }
+    ],
+    "keySkills": [
+        { "name": "React", "icon": "fa-brands fa-react" },
+        { "name": "Node.js", "icon": "fa-brands fa-node-js" },
+        { "name": "MongoDB", "icon": "fa-solid fa-leaf" },
+        { "name": "MySQL", "icon": "fa-solid fa-database" },
+        { "name": "TailwindCSS", "icon": "fa-solid fa-wind" },
+        { "name": "Figma", "icon": "fa-brands fa-figma" },
+        { "name": "Git", "icon": "fa-brands fa-git-alt" },
+        { "name": "JavaScript", "icon": "fa-brands fa-js" },
+        { "name": "PHP", "icon": "fa-brands fa-php" },
+        { "name": "HTML", "icon": "fa-brands fa-html5" },
+        { "name": "CSS", "icon": "fa-brands fa-css3-alt" },
+        { "name": "Kotlin", "icon": "fa-brands fa-android" }
+    ]
+}
