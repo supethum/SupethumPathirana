@@ -24,6 +24,7 @@
         { "name": "PHP", "icon": "fa-brands fa-php" },
         { "name": "HTML", "icon": "fa-brands fa-html5" },
         { "name": "CSS", "icon": "fa-brands fa-css3-alt" },
-        { "name": "Kotlin", "icon": "fa-brands fa-android" }
+        { "name": "Kotlin", "icon": "fa-brands fa-android" },
+        { "name": "C++", "icon": "fas fa-file-code" }
     ]
 }
