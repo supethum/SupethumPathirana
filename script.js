@@ -497,7 +497,7 @@ function initContactForm() {
         // --- CONFIGURATION FROM YOUR IMAGES ---
         const serviceID = 'service_quhso05';      // From image_559ec9.png
         const adminTemplate = 'template_ukrly1m'; // "Contact Us" from image_559ac5.png
-        const userTemplate = 'template_7tq4r3h';  // "Auto-Reply" from image_559ac5.png
+        const userTemplate = 'template_oem5i4b';  // "Auto-Reply" from image_559ac5.png
         // -------------------------------------
 
         // Step 1: Send Admin Notification (To You)
