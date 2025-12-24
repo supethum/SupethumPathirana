@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Supethum Pathirana</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        
-        <canvas id="bg-canvas"></canvas>
-        
-        <div class="progress-bar-container">
-            <div id="progressBar"></div>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supethum Pathirana</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
 
-        <div class="hero-header">
+    <div class="progress-bar-container">
+        <div id="progressBar"></div>
+    </div>
+
+    <div class="hero-header">
         <div class="wrapper">
             <header>
-                    <div class="logo-text"><b>SP</b></div>
+                <div class="logo-text"><b>SP</b></div>
                 <nav>
                     <div class="togglebtn">
                         <span></span>
@@ -35,22 +34,23 @@
                         <li><a href="#Contact me">Contact me</a></li>
                     </ul>
                     <div class="theme-toggle" id="themeSwitch">
-                       <i class="fa-solid fa-sun"></i>
+                        <i class="fa-solid fa-sun"></i>
                     </div>
                 </nav>
             </header>
+
             <section id="Home">
                 <div class="container">
                     <div class="hero-bg">
                         <div class="ring-1"></div>
                         <div class="ring-2"></div>
                         <div class="hero-pic">
-                            <img src="resources/profile.png" alt="profile pic">
+                            <img src="resources/profile.png" alt="Profile Picture">
                         </div>
                     </div>
                     <div class="hero-text">
                         <div class="Texts">
-                            <h3>Hi I am </h3>
+                            <h3>Hi I am</h3>
                             <h1>Supethum Pathirana</h1>
                             <h2><span class="input">Full Stack Developer</span></h2>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="social" id="hero-socials"></div>
 
                         <div class="btn-group">
-                            <a href="#Contact me" class="btn2">Let's Talk <i class="fa-solid fa-arrow-right"></i></i></i></a>
+                            <a href="#Contact me" class="btn2">Let's Talk <i class="fa-solid fa-arrow-right"></i></a>
                             <button id="cvBtn" class="btn active">Download CV <i class="fa-solid fa-download"></i></button>
                         </div>
 
@@ -67,9 +67,7 @@
                                 <span class="stat-number" id="experienceCount" data-target="1">0</span>
                                 <p class="stat-label">Experiences</p>
                             </div>
-
                             <div class="stat-separator"></div>
-
                             <div class="stat-item">
                                 <span class="stat-number" id="projectCount">0</span>
                                 <p class="stat-label">Projects done</p>
@@ -78,26 +76,23 @@
                     </div>
                 </div>
             </section>
+
             <div class="main-content">
-                
                 <section id="About me" class="About me">
                     <h1>About me</h1><br><br>
-                    
                     <p id="about-bio"></p><br>
 
                     <div class="container2">
                         <div class="column-left">
-                            
                             <div class="card2" data-animate>
                                 <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
                                 <div id="education-list"></div>
                             </div>
 
-                            <div class="card2" data-animate style="transition-delay: 100ms;"> 
+                            <div class="card2" data-animate style="transition-delay: 100ms;">
                                 <h2><i class="fa-solid fa-briefcase"></i> Experience</h2>
                                 <div id="experience-list"></div>
                             </div>
-
                         </div>
 
                         <div class="column-right">
@@ -115,7 +110,7 @@
                 </section>
 
                 <section id="Skills" class="Skills">
-                    <h1>Skills</h1><br> 
+                    <h1>Skills</h1><br>
                     <section class="filter-section">
                         <button class="filter-btn active" data-filter="all">All</button>
                         <button class="filter-btn" data-filter="frontend">Frontend</button>
@@ -124,7 +119,6 @@
                         <button class="filter-btn" data-filter="database">Database</button>
                         <button class="filter-btn" data-filter="tools">Tools</button>
                     </section>
-                    
                     <div class="skills" id="skills-container"></div>
                 </section>
 
@@ -137,72 +131,41 @@
                         <button class="filter-btn" data-filter="app">App</button>
                         <button class="filter-btn" data-filter="extension">Extension</button>
                     </section>
-
                     <section class="projects-grid" id="projects-grid"></section>
                 </section>
 
                 <section id="Contact me" class="Contact me">
                     <h1>Contact me</h1><br>
-
                     <div class="contact-section">
-                        <form class="contact-form"
-                            action="https://formsubmit.co/supethum.dev@gmail.com"
-                            method="POST">
-
+                        <form class="contact-form" action="https://formsubmit.co/supethum.dev@gmail.com" method="POST">
                             <div class="form-grid">
-
-                                <input type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    class="form-input"
-                                    required>
-
-                                <input type="email"
-                                    name="email"
-                                    placeholder="Email"
-                                    class="form-input"
-                                    required>
-
-                                <input type="text"
-                                    name="phone"
-                                    placeholder="Phone Number"
-                                    class="form-input">
-
+                                <input type="text" name="name" placeholder="Name" class="form-input" required>
+                                <input type="email" name="email" placeholder="Email" class="form-input" required>
+                                <input type="text" name="phone" placeholder="Phone Number" class="form-input">
                                 <div class="select-wrapper">
-                                    <select name="service"
-                                            class="form-input"
-                                            required>
-                                            <option disabled selected>Service Of Interest</option>
-                                            <option>Web Development</option>
-                                            <option>UI/UX Design</option>
-                                            <option>Mobile App</option>
+                                    <select name="service" class="form-input" required>
+                                        <option disabled selected>Service Of Interest</option>
+                                        <option>Web Development</option>
+                                        <option>UI/UX Design</option>
+                                        <option>Mobile App</option>
                                     </select>
                                     <i class="fa-solid fa-chevron-down dropdown-icon"></i>
                                 </div>
-
-                                <textarea name="message"
-                                        placeholder="Project Details..."
-                                        class="form-input textarea"
-                                        required></textarea>
+                                <textarea name="message" placeholder="Project Details..." class="form-input textarea" required></textarea>
                             </div>
-
                             <input type="hidden" name="_subject" value="New Contact Message">
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_template" value="table">
-
                             <button type="submit" class="submit-btn">Send <i class="fa-solid fa-paper-plane"></i></button>
-
                         </form>
                     </div>
-
                 </section>
             </div>
         </div>
-     </div>
+    </div>
 
-      <footer class="footer">
+    <footer class="footer">
         <h2 class="footer-title">Supethum Pathirana</h2>
-
         <ul class="footer-menu">
             <li><a href="#Home">Home</a></li>
             <li><a href="#About me">About me</a></li>
@@ -210,15 +173,12 @@
             <li><a href="#Projects">Projects</a></li>
             <li><a href="#Contact me">Contact me</a></li>
         </ul>
-
         <div class="footer-socials" id="footer-socials"></div>
-
         <hr class="footer-line">
-
         <p class="footer-credit">© 2025 Supethum Pathirana. All Rights Reserved.</p>
     </footer>
-      
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
-      <script src="script.js"></script>
-    </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>

@@ -18,11 +18,6 @@
             "name": "Email",
             "url": "mailto:supethum.dev@gmail.com?subject=Inquiry from Portfolio",
             "iconClass": "fa-solid fa-envelope"
-        },
-        {
-            "name": "Facebook",
-            "url": "https://facebook.com/your-profile-url",
-            "iconClass": "fa-brands fa-facebook"
         }
     ]
 }
