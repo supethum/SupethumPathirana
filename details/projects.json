@@ -7,5 +7,25 @@
         "buttons": [
             { "text": "Live Demo", "url": "https://www.figma.com/proto/qhZ8KMZFV3iiW8Xwqfyf5B/Untitled?node-id=59-557&p=f&t=LOn7WSenjtVnWkKv-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=13%3A514", "icon": "fa-solid fa-up-right-from-square" }
         ]
+    },
+    {
+        "category": "extension",
+        "image": "resources/lotuspond.png",
+        "tech": "HTML | CSS | JS",
+        "description": "LotusPond replaces your New Tab with a calming, animated ecosystem that syncs with the time of day.",
+        "buttons": [
+            { "text": "Git", "url": "https://github.com/supethum/LotusPond.git", "icon": "fa-brands fa-github" },
+            { "text": "Watch", "url": "https://drive.google.com/file/d/19l8x7G17t-O7SyYz8dEkMybWIpORGKdY/view?usp=sharing", "icon": "fa-solid fa-circle-play" }
+        ]
+    },
+    {
+        "category": "app",
+        "image": "resources/balanceme.png",
+        "tech": "Kotlin",
+        "description": "BalanceMe is a personal wellness application designed to help you track and improve various aspects of your daily life.",
+        "buttons": [
+            { "text": "Git", "url": "https://github.com/supethum/BalanceMe.git", "icon": "fa-brands fa-github" },
+            { "text": "Watch", "url": "https://drive.google.com/file/d/1HlSnn5E4AKAQlbZPhaiAJJwTT74peO18/view?usp=drive_link", "icon": "fa-solid fa-circle-play" }
+        ]
     }
 ]
