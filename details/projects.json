@@ -1,12 +1,22 @@
 [
-     {
+    {
+        "category": ["web"],
+        "image": "resources/eventrix.png",
+        "tech": "MongoDB | Express.js | React | Node.js",
+        "description": "Eventrix is a MERN stack web application for renting event equipment, featuring full CRUD capabilities for inventory management.",
+        "buttons": [
+            { "text": "Git", "url": "https://github.com/pushpikaishan/equiment-rental.git", "icon": "fa-brands fa-github" },
+            { "text": "Live Demo", "url": "https://tinyurl.com/Eventrixsl", "icon": "fa-solid fa-up-right-from-square" }
+        ]
+    },
+    {
         "category": ["web", "uiux"],
         "image": "resources/portfolio.png",
         "tech": "HTML | CSS | JS | Figma",
         "description": "My responsive portfolio showcasing my projects and skills. It features a dark/light mode toggle, dynamic content loading, and a working contact form.",
         "buttons": [
             { "text": "Git", "url": "https://github.com/supethum/SupethumPathirana.git", "icon": "fa-brands fa-github" },
-            { "text": "Prototype", "url": "https://www.figma.com/proto/lexf75KJ0MB8EsofHUJE5c/Untitled?node-id=0-1&t=3N4Wovk4euzmXVEE-1", "icon": "fa-solid fa-up-right-from-square" }
+            { "text": "Prototype", "url": "https://www.figma.com/proto/lexf75KJ0MB8EsofHUJE5c/Untitled?node-id=0-1&t=3N4Wovk4euzmXVEE-1", "icon": "fas fa-layer-group" }
         ]
     },
     {
@@ -16,7 +26,7 @@
         "description": "VegBulk is a mobile marketplace that connects vegetable vendors directly with farmers for hassle-free bulk ordering of fresh produce.",
         "buttons": [
             { "text": "Git", "url": "https://github.com/supethum/VegBulk.git", "icon": "fa-brands fa-github" },
-            { "text": "Prototype", "url": "https://www.figma.com/proto/qhZ8KMZFV3iiW8Xwqfyf5B/Untitled?node-id=59-557&p=f&t=LOn7WSenjtVnWkKv-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=13%3A514", "icon": "fa-solid fa-up-right-from-square" }
+            { "text": "Prototype", "url": "https://www.figma.com/proto/qhZ8KMZFV3iiW8Xwqfyf5B/Untitled?node-id=59-557&p=f&t=LOn7WSenjtVnWkKv-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=13%3A514", "icon": "fas fa-layer-group" }
         ]
     },
     {
@@ -45,7 +55,7 @@
         "tech": "Figma",
         "description": "BPhoenix AI is the official chatbot for Benchmark 3.0, the competition hosted by AIESEC in SLIIT. Designed to support the tournament",
         "buttons": [
-            { "text": "Prototype", "url": "https://www.figma.com/proto/6ROtYRfBjWQUZm8g5X7vzf/PhoenixAi?node-id=4-2&t=OSN7PR1ZffR3xkPh-1", "icon": "fa-solid fa-up-right-from-square" }
+            { "text": "Prototype", "url": "https://www.figma.com/proto/6ROtYRfBjWQUZm8g5X7vzf/PhoenixAi?node-id=4-2&t=OSN7PR1ZffR3xkPh-1", "icon": "fas fa-layer-group" }
         ]
     }
 ]
