@@ -4,23 +4,23 @@ let siteConfig = {};
 // Function to load all JSON data
 async function loadAllData() {
   try {
-    // 1. Fetch Configuration (CV & Socials)
-    const configResponse = await fetch('config.json');
+    // 1. Fetch Configuration (CV & Socials) -> Path Updated
+    const configResponse = await fetch('details/config.json');
     siteConfig = await configResponse.json();
     renderConfig(siteConfig);
 
-    // 2. Fetch Projects
-    const projectsResponse = await fetch('projects.json');
+    // 2. Fetch Projects -> Path Updated
+    const projectsResponse = await fetch('details/projects.json');
     const projectsData = await projectsResponse.json();
     renderProjects(projectsData);
 
-    // 3. Fetch Skills
-    const skillsResponse = await fetch('skills.json');
+    // 3. Fetch Skills -> Path Updated
+    const skillsResponse = await fetch('details/skills.json');
     const skillsData = await skillsResponse.json();
     renderSkills(skillsData);
 
-    // 4. Fetch About
-    const aboutResponse = await fetch('about.json');
+    // 4. Fetch About -> Path Updated
+    const aboutResponse = await fetch('details/about.json');
     const aboutData = await aboutResponse.json();
     renderAbout(aboutData);
 
@@ -29,7 +29,7 @@ async function loadAllData() {
     initFilters();
 
   } catch (error) {
-    console.error('Error loading JSON data:', error);
+    console.error('Error loading JSON data. Make sure files are in the "details" folder:', error);
   }
 }
 
