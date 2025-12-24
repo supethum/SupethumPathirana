@@ -67,8 +67,15 @@ function renderProjects(projects) {
       ).join('');
     }
 
+    // --- UPDATED LOGIC START ---
+    // Handles both Array ["web", "uiux"] and String "web, uiux" from JSON
+    const categoryString = Array.isArray(project.category) 
+        ? project.category.join(',') 
+        : project.category; 
+    // --- UPDATED LOGIC END ---
+
     html += `
-      <div class="card" data-category="${project.category}">
+      <div class="card" data-category="${categoryString}">
           <img src="${project.image}" class="card-img" alt="${project.tech}">
           <div class="card-body">
               <h4 class="tech">${project.tech}</h4>
@@ -150,9 +157,14 @@ function initFilters() {
       btn.addEventListener("click", () => {
           projectFilterButtons.forEach(b => b.classList.remove("active"));
           btn.classList.add("active");
-          const category = btn.getAttribute("data-filter");
+          
+          const filterValue = btn.getAttribute("data-filter");
+
           projectCards.forEach(card => {
-              if (category === "all" || card.getAttribute("data-category") === category) {
+              const cardCatAttr = card.getAttribute("data-category");
+              const cardCategories = cardCatAttr ? cardCatAttr.split(',').map(c => c.trim()) : [];
+
+              if (filterValue === "all" || cardCategories.includes(filterValue)) {
                   card.style.display = "block";
               } else {
                   card.style.display = "none";
