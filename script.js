@@ -494,16 +494,12 @@ function initContactForm() {
         submitBtn.disabled = true;
         submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
 
-        // --- CONFIGURATION FROM YOUR IMAGES ---
-        const serviceID = 'service_quhso05';      // From image_559ec9.png
-        const adminTemplate = 'template_ukrly1m'; // "Contact Us" from image_559ac5.png
-        const userTemplate = 'template_oem5i4b';  // "Auto-Reply" from image_559ac5.png
-        // -------------------------------------
+        const serviceID = 'service_quhso05';   
+        const adminTemplate = 'template_ukrly1m'; 
+        const userTemplate = 'template_oem5i4b';  
 
-        // Step 1: Send Admin Notification (To You)
         emailjs.sendForm(serviceID, adminTemplate, this)
             .then(() => {
-                // Step 2: If Admin email succeeds, send User Auto-Reply (To Visitor) silently
                 emailjs.sendForm(serviceID, userTemplate, this);
 
                 showFormMessage('Message sent successfully! I will reply soon.');

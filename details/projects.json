@@ -12,7 +12,7 @@
         "category": "extension",
         "image": "resources/lotuspond.png",
         "tech": "HTML | CSS | JS",
-        "description": "LotusPond replaces your New Tab with a calming, animated ecosystem that syncs with the time of day.",
+        "description": "LotusPond turns your New Tab into a calming, time-synced ecosystem designed for focus, featuring a clock, live weather, and quick access to shortcuts.",
         "buttons": [
             { "text": "Git", "url": "https://github.com/supethum/LotusPond.git", "icon": "fa-brands fa-github" },
             { "text": "Watch", "url": "https://drive.google.com/file/d/19l8x7G17t-O7SyYz8dEkMybWIpORGKdY/view?usp=sharing", "icon": "fa-solid fa-circle-play" }
