@@ -1,6 +1,6 @@
 [
      {
-        "category": "web, uiux",
+        "category": ["web", "uiux"],
         "image": "resources/portfolio.png",
         "tech": "HTML | CSS | JS | Figma",
         "description": "My responsive portfolio showcasing my projects and skills. It features a dark/light mode toggle, dynamic content loading, and a working contact form.",
@@ -10,7 +10,7 @@
         ]
     },
     {
-        "category": "uiux, app",
+        "category": ["app", "uiux"],
         "image": "resources/vegbulk.png",
         "tech": "Figma | Kotlin",
         "description": "VegBulk is a mobile marketplace that connects vegetable vendors directly with farmers for hassle-free bulk ordering of fresh produce.",
