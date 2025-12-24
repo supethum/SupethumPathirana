@@ -4,22 +4,22 @@ let siteConfig = {};
 // Function to load all JSON data
 async function loadAllData() {
   try {
-    // 1. Fetch Configuration (CV & Socials) -> Path Updated
+    // 1. Fetch Configuration (CV & Socials)
     const configResponse = await fetch('details/config.json');
     siteConfig = await configResponse.json();
     renderConfig(siteConfig);
 
-    // 2. Fetch Projects -> Path Updated
+    // 2. Fetch Projects
     const projectsResponse = await fetch('details/projects.json');
     const projectsData = await projectsResponse.json();
     renderProjects(projectsData);
 
-    // 3. Fetch Skills -> Path Updated
+    // 3. Fetch Skills
     const skillsResponse = await fetch('details/skills.json');
     const skillsData = await skillsResponse.json();
     renderSkills(skillsData);
 
-    // 4. Fetch About -> Path Updated
+    // 4. Fetch About
     const aboutResponse = await fetch('details/about.json');
     const aboutData = await aboutResponse.json();
     renderAbout(aboutData);
@@ -454,65 +454,68 @@ function initCanvas() {
     animateParticles();
 }
 
-// Contact Form
+// Updated Contact Form - Sends 2 Emails (Admin + Auto-Reply)
 function initContactForm() {
-    const contactForm = document.querySelector('.contact-form');
+    const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
 
-    function showFormMessage(msg) {
+    function showFormMessage(msg, isError = false) {
         let el = document.querySelector('.form-success');
         if (!el) {
-        el = document.createElement('div');
-        el.className = 'form-success';
-        el.style.position = 'fixed';
-        el.style.top = '16px';
-        el.style.left = '50%';
-        el.style.transform = 'translateX(-50%)';
-        el.style.background = 'var(--accent-color)';
-        el.style.color = '#fff';
-        el.style.padding = '10px 16px';
-        el.style.borderRadius = '8px';
-        el.style.zIndex = '11000';
-        el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.35)';
-        document.body.appendChild(el);
+            el = document.createElement('div');
+            el.className = 'form-success';
+            el.style.position = 'fixed';
+            el.style.top = '20px';
+            el.style.left = '50%';
+            el.style.transform = 'translateX(-50%)';
+            el.style.background = isError ? '#ff4444' : 'var(--accent-color)';
+            el.style.color = '#fff';
+            el.style.padding = '12px 24px';
+            el.style.borderRadius = '8px';
+            el.style.zIndex = '11000';
+            el.style.boxShadow = '0 6px 18px rgba(0,0,0,0.35)';
+            document.body.appendChild(el);
         }
         el.textContent = msg;
+        el.style.background = isError ? '#ff4444' : 'var(--accent-color)';
         el.style.opacity = '1';
-        el.style.transition = 'opacity 0.4s ease';
-        setTimeout(() => { el.style.opacity = '0'; }, 2200);
-        setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 3000);
+        
+        setTimeout(() => { el.style.opacity = '0'; }, 3000);
+        setTimeout(() => { if (el.parentNode) el.parentNode.removeChild(el); }, 3500);
     }
 
-    contactForm.addEventListener('submit', async function(e) {
+    contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        
         const submitBtn = contactForm.querySelector('.submit-btn');
-        if (submitBtn) submitBtn.disabled = true;
+        const originalBtnText = submitBtn.innerHTML;
+        
+        // 1. Loading State
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
 
-        const action = contactForm.getAttribute('action') || window.location.href;
-        const method = (contactForm.getAttribute('method') || 'POST').toUpperCase();
-        const formData = new FormData(contactForm);
+        // --- CONFIGURATION FROM YOUR IMAGES ---
+        const serviceID = 'service_quhso05';      // From image_559ec9.png
+        const adminTemplate = 'template_ukrly1m'; // "Contact Us" from image_559ac5.png
+        const userTemplate = 'template_7tq4r3h';  // "Auto-Reply" from image_559ac5.png
+        // -------------------------------------
 
-        try {
-        const res = await fetch(action, {
-            method: method,
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
+        // Step 1: Send Admin Notification (To You)
+        emailjs.sendForm(serviceID, adminTemplate, this)
+            .then(() => {
+                // Step 2: If Admin email succeeds, send User Auto-Reply (To Visitor) silently
+                emailjs.sendForm(serviceID, userTemplate, this);
 
-        if (res.ok) {
-            showFormMessage('Sent successfully — thank you!');
-            contactForm.reset();
-            setTimeout(() => {
-                 const targetElement = document.getElementById('Home');
-                 if(targetElement) targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 300);
-        } else {
-            contactForm.submit();
-        }
-        } catch (err) {
-            contactForm.submit();
-        } finally {
-            if (submitBtn) submitBtn.disabled = false;
-        }
+                showFormMessage('Message sent successfully! I will reply soon.');
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            })
+            .catch((error) => {
+                console.error('FAILED...', error);
+                showFormMessage('Failed to send. Please try again.', true);
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            });
     });
 }

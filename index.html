@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("T7gvEN-1sSRiSt1rd");
+       })();
+    </script>
 </head>
 <body>
     <canvas id="bg-canvas"></canvas>
@@ -137,10 +144,12 @@
                 <section id="Contact me" class="Contact me">
                     <h1>Contact me</h1><br>
                     <div class="contact-section">
-                        <form class="contact-form" action="https://formsubmit.co/supethum.dev@gmail.com" method="POST">
+                        <form class="contact-form" id="contact-form">
                             <div class="form-grid">
-                                <input type="text" name="name" placeholder="Name" class="form-input" required>
-                                <input type="email" name="email" placeholder="Email" class="form-input" required>
+                                <input type="text" name="from_name" placeholder="Name" class="form-input" required>
+                                
+                                <input type="email" name="reply_to" placeholder="Email" class="form-input" required>
+                                
                                 <input type="text" name="phone" placeholder="Phone Number" class="form-input">
                                 <div class="select-wrapper">
                                     <select name="service" class="form-input" required>
@@ -153,9 +162,7 @@
                                 </div>
                                 <textarea name="message" placeholder="Project Details..." class="form-input textarea" required></textarea>
                             </div>
-                            <input type="hidden" name="_subject" value="New Contact Message">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_template" value="table">
+                            
                             <button type="submit" class="submit-btn">Send <i class="fa-solid fa-paper-plane"></i></button>
                         </form>
                     </div>
