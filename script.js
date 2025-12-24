@@ -489,8 +489,47 @@ function initContactForm() {
         
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalBtnText = submitBtn.innerHTML;
-        
-        // 1. Loading State
+
+        const nameInput = contactForm.querySelector('input[name="from_name"]');
+        const emailInput = contactForm.querySelector('input[name="reply_to"]');
+        const phoneInput = contactForm.querySelector('input[name="phone"]');
+        const serviceSelect = contactForm.querySelector('select[name="service"]');
+        const messageInput = contactForm.querySelector('textarea[name="message"]');
+
+        if (!nameInput.value.trim()) {
+            showFormMessage('Please enter your name.', true);
+            return;
+        }
+
+        if (!emailInput.value.trim()) {
+            showFormMessage('Please enter your email.', true);
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+            showFormMessage('Please enter a valid email address.', true);
+            return;
+        }
+
+        if (phoneInput.value.trim()) {
+            const phoneRegex = /^\d+$/;
+            if (!phoneRegex.test(phoneInput.value)) {
+                showFormMessage('Phone number must contain only numbers.', true);
+                return;
+            }
+        }
+
+        if (serviceSelect.value === 'Service Of Interest' || !serviceSelect.value) {
+            showFormMessage('Please select a service of interest.', true);
+            return;
+        }
+
+        if (!messageInput.value.trim()) {
+            showFormMessage('Please enter project details.', true);
+            return;
+        }
+
         submitBtn.disabled = true;
         submitBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
 

@@ -1,4 +1,14 @@
 [
+     {
+        "category": "web",
+        "image": "resources/portfolio.png",
+        "tech": "HTML | CSS | JS",
+        "description": "My responsive portfolio showcasing my projects and skills. It features a dark/light mode toggle, dynamic content loading, and a working contact form.",
+        "buttons": [
+            { "text": "Git", "url": "https://github.com/supethum/SupethumPathirana.git", "icon": "fa-brands fa-github" },
+            { "text": "Live Demo", "url": "https://www.figma.com/proto/lexf75KJ0MB8EsofHUJE5c/Untitled?node-id=0-1&t=3N4Wovk4euzmXVEE-1", "icon": "fa-solid fa-up-right-from-square" }
+        ]
+    },
     {
         "category": "uiux",
         "image": "resources/vegbulk.png",
