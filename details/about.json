@@ -9,7 +9,7 @@
     ],
     "experience": [
         { "role": "Full Stack Developer", "date": "2025 - Present" },
-        { "role": "UI UX Designer", "date": "2025 - Present" },
+        { "role": "UI UX Designer", "date": "2024 - Present" },
         { "role": "Mobile App Developer", "date": "2025 - Present" }
     ],
     "keySkills": [
@@ -17,14 +17,10 @@
         { "name": "Node.js", "icon": "fa-brands fa-node-js" },
         { "name": "MongoDB", "icon": "fa-solid fa-leaf" },
         { "name": "MySQL", "icon": "fa-solid fa-database" },
-        { "name": "TailwindCSS", "icon": "fa-solid fa-wind" },
-        { "name": "Figma", "icon": "fa-brands fa-figma" },
-        { "name": "Git", "icon": "fa-brands fa-git-alt" },
         { "name": "JavaScript", "icon": "fa-brands fa-js" },
         { "name": "PHP", "icon": "fa-brands fa-php" },
         { "name": "HTML", "icon": "fa-brands fa-html5" },
         { "name": "CSS", "icon": "fa-brands fa-css3-alt" },
-        { "name": "Kotlin", "icon": "fa-brands fa-android" },
-        { "name": "C++", "icon": "fas fa-file-code" }
+        { "name": "Kotlin", "icon": "fa-brands fa-android" }
     ]
 }

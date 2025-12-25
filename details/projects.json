@@ -53,7 +53,7 @@
         "category": ["uiux"],
         "image": "resources/phoenixai.png",
         "tech": "Figma",
-        "description": "BPhoenix AI is the official chatbot for Benchmark 3.0, the competition hosted by AIESEC in SLIIT. Designed to support the tournament",
+        "description": "Phoenix AI is the official chatbot for Benchmark 3.0, the competition hosted by AIESEC in SLIIT. Designed to support the tournament",
         "buttons": [
             { "text": "Prototype", "url": "https://www.figma.com/proto/6ROtYRfBjWQUZm8g5X7vzf/PhoenixAi?node-id=4-2&t=OSN7PR1ZffR3xkPh-1", "icon": "fas fa-layer-group" }
         ]
