@@ -53,11 +53,17 @@ function renderConfig(data) {
     viewCvBtn.href = data.cv.fileUrl;
   }
 }
-
 // Render Projects
 function renderProjects(projects) {
   const container = document.getElementById('projects-grid');
   let html = '';
+
+  const categoryIcons = {
+    'web': 'fa-solid fa-desktop',
+    'app': 'fas fa-mobile-alt',
+    'uiux': 'fas fa-pencil-ruler',
+    'extension': 'fa-solid fa-puzzle-piece'
+  };
 
   projects.forEach(project => {
     let buttonsHtml = '';
@@ -67,16 +73,22 @@ function renderProjects(projects) {
       ).join('');
     }
 
-    // --- UPDATED LOGIC START ---
-    // Handles both Array ["web", "uiux"] and String "web, uiux" from JSON
     const categoryString = Array.isArray(project.category) 
         ? project.category.join(',') 
-        : project.category; 
-    // --- UPDATED LOGIC END ---
+        : project.category;
+    
+    const primaryCategory = Array.isArray(project.category) 
+        ? project.category[0] 
+        : project.category.split(',')[0].trim();
+    const categoryIcon = categoryIcons[primaryCategory] || 'fa-solid fa-star';
+
 
     html += `
       <div class="card" data-category="${categoryString}">
           <img src="${project.image}" class="card-img" alt="${project.tech}">
+          <div class="category-icon">
+              <i class="${categoryIcon}"></i>
+          </div>
           <div class="card-body">
               <h4 class="tech">${project.tech}</h4>
               <p>${project.description}</p>

@@ -20,7 +20,7 @@
         ]
     },
     {
-        "category": ["uiux", "app"],
+        "category": ["app", "uiux"],
         "image": "resources/vegbulk.png",
         "tech": "Figma | Kotlin",
         "description": "VegBulk is a mobile marketplace that connects vegetable vendors directly with farmers for hassle-free bulk ordering of fresh produce.",
