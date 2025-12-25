@@ -40,6 +40,16 @@
         ]
     },
     {
+        "category": ["web"],
+        "image": "resources/*",
+        "tech": "MongoDB | Express.js | React | Node.js",
+        "description": "new",
+        "buttons": [
+            { "text": "Git", "url": "https://github.com/pushpikaishan/equiment-rental.git", "icon": "fa-brands fa-github" },
+            { "text": "Live Demo", "url": "https://tinyurl.com/Eventrixsl", "icon": "fa-solid fa-up-right-from-square" }
+        ]
+    },
+    {
         "category": ["app"],
         "image": "resources/balanceme.png",
         "tech": "Kotlin",
