@@ -10,16 +10,6 @@
         ]
     },
     {
-        "category": ["web", "uiux"],
-        "image": "resources/portfolio.png",
-        "tech": "HTML | CSS | JS | Figma",
-        "description": "My responsive portfolio showcasing my projects and skills. It features a dark/light mode toggle, dynamic content loading, and a working contact form.",
-        "buttons": [
-            { "text": "Git", "url": "https://github.com/supethum/SupethumPathirana.git", "icon": "fa-brands fa-github" },
-            { "text": "Prototype", "url": "https://www.figma.com/proto/lexf75KJ0MB8EsofHUJE5c/Untitled?node-id=0-1&t=3N4Wovk4euzmXVEE-1", "icon": "fas fa-layer-group" }
-        ]
-    },
-    {
         "category": ["app", "uiux"],
         "image": "resources/vegbulk.png",
         "tech": "Figma | Kotlin",
@@ -41,12 +31,11 @@
     },
     {
         "category": ["web"],
-        "image": "resources/*",
+        "image": "resources/watchmark.png",
         "tech": "MongoDB | Express.js | React | Node.js",
-        "description": "new",
+        "description": "WatchMark is a web app that helps you keep track of the movies and TV shows you watch. It serves as your personal entertainment diary.",
         "buttons": [
-            { "text": "Git", "url": "https://github.com/pushpikaishan/equiment-rental.git", "icon": "fa-brands fa-github" },
-            { "text": "Live Demo", "url": "https://tinyurl.com/Eventrixsl", "icon": "fa-solid fa-up-right-from-square" }
+            { "text": "Git", "url": "https://github.com/supethum/WatchMark.git", "icon": "fa-brands fa-github" }
         ]
     },
     {
@@ -57,6 +46,16 @@
         "buttons": [
             { "text": "Git", "url": "https://github.com/supethum/BalanceMe.git", "icon": "fa-brands fa-github" },
             { "text": "Watch", "url": "https://drive.google.com/file/d/1HlSnn5E4AKAQlbZPhaiAJJwTT74peO18/view?usp=drive_link", "icon": "fa-solid fa-circle-play" }
+        ]
+    },
+    {
+        "category": ["web", "uiux"],
+        "image": "resources/portfolio.png",
+        "tech": "HTML | CSS | JS | Figma",
+        "description": "My responsive portfolio showcasing my projects and skills. It features a dark/light mode toggle, dynamic content loading, and a working contact form.",
+        "buttons": [
+            { "text": "Git", "url": "https://github.com/supethum/SupethumPathirana.git", "icon": "fa-brands fa-github" },
+            { "text": "Prototype", "url": "https://www.figma.com/proto/lexf75KJ0MB8EsofHUJE5c/Untitled?node-id=0-1&t=3N4Wovk4euzmXVEE-1", "icon": "fas fa-layer-group" }
         ]
     },
     {
