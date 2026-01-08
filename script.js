@@ -396,6 +396,13 @@ function setupUIInteractions() {
   initContactForm();
 }
 
+// Global popup functions
+function closeSuccessPopup() {
+    const popup = document.getElementById('successPopup');
+    popup.classList.remove('show');
+    document.body.style.overflow = ''; // Restore scrolling
+}
+
 // Background Canvas
 function initCanvas() {
     const canvas = document.getElementById('bg-canvas');
@@ -483,6 +490,12 @@ function initContactForm() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
 
+    function showSuccessPopup() {
+        const popup = document.getElementById('successPopup');
+        popup.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
     function showFormMessage(msg, isError = false) {
         let el = document.querySelector('.form-success');
         if (!el) {
@@ -565,7 +578,7 @@ function initContactForm() {
             .then(() => {
                 emailjs.sendForm(serviceID, userTemplate, this);
 
-                showFormMessage('Message sent. I\'ll get back to you soon.');
+                showSuccessPopup();
                 contactForm.reset();
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalBtnText;
